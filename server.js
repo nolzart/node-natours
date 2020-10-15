@@ -19,6 +19,10 @@ mongoose
     })
     .then(() => console.log('DB connection successful!'));
 
+// const db = mongoose.connection;
+// db.once('open', () => console.log('Successfully connected to MongoDB'));
+// db.on('error', (e) => console.log(e));
+
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
     // eslint-disable-next-line no-console
