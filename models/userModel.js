@@ -22,6 +22,7 @@ const userSchema = new mongoose.Schema({
         enum: ['user', 'guide', 'lead-guide', 'admin'],
         default: 'user',
     },
+    changedPasswordAt: Date,
     password: {
         type: String,
         required: [true, 'Please provide a password'],
@@ -54,8 +55,8 @@ userSchema.pre('save', async function (next) {
 });
 
 userSchema.pre('save', function (next) {
-    if (this.isModified('password') || this.isNew) return next();
-
+    if (!this.isModified('password') || this.isNew) return next();
+    console.log(this);
     this.changedPasswordAt = Date.now() - 1000;
     next();
 });
