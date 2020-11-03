@@ -16,10 +16,6 @@ const tourSchema = new mongoose.Schema(
                 10,
                 'A tour name must have more or equal then 10 characters',
             ],
-            // validate: [
-            //     validator.isAlpha,
-            //     'Tour name must only contain characters',
-            // ],
         },
         slug: String,
         duration: {
@@ -86,6 +82,34 @@ const tourSchema = new mongoose.Schema(
             type: Boolean,
             default: false,
         },
+        startLocation: {
+            type: {
+                type: String,
+                default: 'Point',
+                enum: ['Point'],
+            },
+            coordinates: [Number],
+            address: String,
+            description: String,
+        },
+        locations: [
+            {
+                type: {
+                    type: String,
+                    default: 'Point',
+                    enum: ['Point'],
+                },
+                coordinates: [Number],
+                address: String,
+                description: String,
+            },
+        ],
+        guides: [
+            {
+                type: mongoose.Schema.Types.ObjectId,
+                ref: 'User',
+            },
+        ],
     },
     {
         toJSON: { virtuals: true },
@@ -103,13 +127,21 @@ tourSchema.pre('save', function (next) {
     next();
 });
 
-//QUERY MIDDLEWARE
+// QUERY MIDDLEWARE
 tourSchema.pre(/^find/, function (next) {
     this.find({ secretTour: { $ne: true } });
     next();
 });
 
-//AGGREGATION MIDDLEWARE
+tourSchema.pre(/^find/, function (next) {
+    this.populate({
+        path: 'guides',
+        select: '-__v -changedPasswordAt',
+    });
+    next();
+});
+
+// AGGREGATION MIDDLEWARE
 tourSchema.pre('aggregate', function (next) {
     this.pipeline().unshift({ $match: { secretTour: { $ne: true } } });
     next();
