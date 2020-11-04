@@ -5,6 +5,11 @@ const catchAsync = require('../utils/catchAsync');
 const AppError = require('../utils/AppError');
 const filterObj = require('../utils/filterObj');
 
+exports.getMe = (req, res, next) => {
+    req.params.id = req.user.id;
+    next();
+};
+
 exports.updateMe = catchAsync(async (req, res, next) => {
     // Create error if user POSTs password data
     if (req.body.password || req.body.passwordConfirm)
