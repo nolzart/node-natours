@@ -1,16 +1,7 @@
 const User = require('../models/userModel');
 const catchAsync = require('../utils/catchAsync');
 const AppError = require('../utils/AppError');
-
-const filterObj = (obj, ...fields) => {
-    const newObj = {};
-
-    Object.keys(obj).forEach(el => {
-        if (fields.includes(el)) newObj[el] = obj[el];
-    });
-
-    return newObj;
-};
+const filterObj = require('../utils/filterObj');
 
 exports.getAllUsers = catchAsync(async (req, res, next) => {
     const users = await User.find();
