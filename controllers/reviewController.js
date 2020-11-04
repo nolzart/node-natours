@@ -5,6 +5,7 @@ const catchAsync = require('../utils/catchAsync');
 const filterObj = require('../utils/filterObj');
 
 exports.getAllReviews = catchAsync(async (req, res, next) => {
+    if (req.params.tourId) req.query.tour = req.params.tourId;
     const features = new APIFeatures(Review.find(), req.query)
         .filter()
         .sort()
@@ -36,12 +37,10 @@ exports.getReview = catchAsync(async (req, res, next) => {
 });
 
 exports.createReview = catchAsync(async (req, res, next) => {
-    const newReview = await Review.create({
-        review: req.body.review,
-        rating: req.body.rating,
-        user: req.user.id,
-        tour: req.body.tourId,
-    });
+    if (!req.body.tour) req.body.tour = req.params.tourId;
+    if (!req.body.user) req.body.user = req.user.id;
+
+    const newReview = await Review.create(req.body);
 
     res.status(201).json({
         status: 'success',
