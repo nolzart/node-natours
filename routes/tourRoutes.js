@@ -13,7 +13,7 @@ router
     .route('/top-5-cheap')
     .get(tourController.aliasTopTours, tourController.getAllTours);
 
-router.route('/tour-stats').get(tourController.getTourStats);
+router.route('/tours-stats').get(tourController.getTourStats);
 
 router
     .route('/montly-plan/:year')
@@ -22,6 +22,12 @@ router
         authController.restrictTo('lead-guide', 'guide', 'admin'),
         tourController.getMontlyPlan
     );
+
+router
+    .route('/tours-within/distance/:distance/center/:latlng/unit/:unit')
+    .get(tourController.getToursWithin);
+
+router.route('/distance/:latlng/unit/:unit').get(tourController.getDistances);
 
 router
     .route('/')

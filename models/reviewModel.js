@@ -32,6 +32,7 @@ const reviewSchema = new mongoose.Schema(
         toObject: { virtuals: true },
     }
 );
+reviewSchema.index({ tour: 1, user: 1 }, { unique: true });
 
 reviewSchema.statics.calcAverageRatings = async function (tourId) {
     // This points to the current model
