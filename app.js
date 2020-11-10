@@ -6,6 +6,8 @@ const mongoSanitize = require('express-mongo-sanitize');
 const xss = require('xss-clean');
 const hpp = require('hpp');
 const path = require('path');
+const cookieParser = require('cookie-parser');
+const compression = require('compression');
 
 const AppError = require('./utils/AppError');
 const globalErrorHandler = require('./controllers/errorController');
@@ -24,6 +26,7 @@ app.set('views', path.join(__dirname, 'views'));
 
 // Serving static files
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(cookieParser());
 
 // Set security headers
 app.use(helmet());
@@ -61,6 +64,8 @@ app.use(
         ],
     })
 );
+
+app.use(compression());
 
 // ROUTES
 app.use('/', viewRouter);

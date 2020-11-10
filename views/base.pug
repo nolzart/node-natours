@@ -1,12 +1,14 @@
 doctype html
 html
     head
-        meta(charset='UTF-8')
-        meta(name='viewport' content='width=device-width, initial-scale=1.0')
-        link(rel='stylesheet' href='/css/style.css')
-        link(rel='shortcut icon' type='image/png' href='/img/favicon.png')
-        link(href='https://fonts.googleapis.com/css?family=Lato:300,300i,700' rel='stylesheet')
-        title Natours | #{title}
+        block head
+            //- meta(http-equiv='Content-Security-Policy' content=`script-src 'self' https://* 'unsafe-inline' 'unsafe-eval'; script-src-elem 'self' https://* 'unsafe-inline' 'unsafe-eval'; style-src 'self' https://* 'unsafe-inline';`)
+            meta(charset='UTF-8')
+            meta(name='viewport' content='width=device-width, initial-scale=1.0')
+            link(rel='stylesheet' href='/css/style.css')
+            link(rel='shortcut icon' type='image/png' href='/img/favicon.png')
+            link(href='https://fonts.googleapis.com/css?family=Lato:300,300i,700' rel='stylesheet')
+            title Natours | #{title}
     body
         // Header
         include _header
@@ -15,3 +17,7 @@ html
             h1 This is a placeholder heading
         //Footer
         include _footer
+        
+        script(src='https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.0/axios.min.js')
+        script(src='/js/map.js')
+        script(src='/js/login.js')
