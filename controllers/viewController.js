@@ -16,7 +16,7 @@ exports.getTour = catchAsync(async (req, res) => {
         path: 'reviews',
         fields: 'review rating user',
     });
-    if (process.env.NODE === 'development')
+    if (process.env.NODE_ENV === 'development')
         res.set(
             'Content-Security-Policy',
             `default-src 'self' https://*; connect-src 'self' https://* wss://*;font-src 'self' https: data:;frame-ancestors 'self';img-src 'self' data: blob:;object-src 'none';worker-src 'self' blob:;script-src 'self' https://* 'unsafe-inline' 'unsafe-eval' blob:;script-src-attr 'none';style-src 'self'  https://* 'unsafe-inline';upgrade-insecure-requests`
@@ -28,12 +28,6 @@ exports.getTour = catchAsync(async (req, res) => {
 });
 
 exports.getLoginForm = catchAsync(async (req, res) => {
-    // connect-src 'self' https://* wss://*;
-    if (process.env.NODE === 'development')
-        res.set(
-            'Content-Security-Policy',
-            `default-src 'self' https://*; connect-src 'self' http://* wss://*;font-src 'self' https: data:;frame-ancestors 'self';img-src 'self' data: blob:;object-src 'none';worker-src 'self' blob:;script-src 'self' https://* 'unsafe-inline' 'unsafe-eval' blob:;script-src-attr 'none';style-src 'self'  https://* 'unsafe-inline';upgrade-insecure-requests`
-        );
     res.status(200).render('login', {
         title: 'Log into your account',
     });

@@ -1,32 +1,35 @@
-/* eslint-disable no-undef */
-const login = async (email, password) => {
-    let headers;
+/* eslint-disable */
+import axios from 'axios';
+import { showAlert } from './alert';
 
-    // headers['Access-Control-Allow-Origin'] = '*';
-    // headers['Access-Control-Allow-Methods'] = 'PUT,GET,POST,DELETE,OPTIONS';
-    // const allow_headers = 'Referer,Accept,Origin,User-Agent,Content-Type';
-    // headers['Access-Control-Allow-Headers'] = allow_headers;
+export const login = async (email, password) => {
     try {
-        const res = await axios.post(
-            '/api/v1/users/login',
-            {
+        const res = await axios({
+            method: 'POST',
+            url: 'http://127.0.0.1:3000/api/v1/users/login',
+            data: {
                 email,
                 password,
             },
-            {
-                headers,
-            }
-        );
-        console.log(res);
+        });
+        showAlert('success', 'Logged in sucessfully!');
+
+        setTimeout(() => window.location.assign('/'), 1500);
     } catch (err) {
-        console.log(err);
+        showAlert('error', err.response.data.message);
     }
 };
 
-document.querySelector('.form').addEventListener('submit', e => {
-    e.preventDefault();
-    const email = document.getElementById('email');
-    const password = document.getElementById('password');
+export const logout = async () => {
+    try {
+        const res = await axios({
+            method: 'GET',
+            url: 'http://127.0.0.1:3000/api/v1/users/logout',
+        });
 
-    login(email, password);
-});
+        if (res) window.location.reload();
+    } catch (err) {
+        console.log(err.response);
+        showAlert('error', 'Something was wrong! Try again.');
+    }
+};
