@@ -1,4 +1,5 @@
 const Tour = require('../models/tourModel');
+const User = require('../models/userModel');
 const catchAsync = require('../utils/catchAsync');
 const AppError = require('../utils/AppError');
 
@@ -32,12 +33,30 @@ exports.getTour = catchAsync(async (req, res, next) => {
     });
 });
 
-exports.getLoginForm = (req, res) =>
+exports.getLoginForm = (req, res) => {
+    res.set(
+        'Content-Security-Policy',
+        `default-src 'self' https://*; connect-src * data: blob: 'unsafe-inline'; ;font-src 'self' https: data:;frame-ancestors 'self';img-src 'self' data: blob:;object-src 'none';worker-src 'self' blob:;script-src 'self' https://* 'unsafe-inline' 'unsafe-eval' blob:;script-src-attr 'none';style-src 'self'  https://* 'unsafe-inline';upgrade-insecure-requests`
+    );
     res.status(200).render('login', {
         title: 'Log into your account',
     });
+};
 
 exports.getAccount = (req, res) =>
     res.status(200).render('account', {
         title: 'Your account',
     });
+
+exports.updateUserData = catchAsync(async (req, res, next) => {
+    console.log(req.body);
+    // const updatedUser = await User.findByIdAndUpdate(req.user.id, {
+    //     name: req.body.name,
+    //     email: req.body.email,
+    // });
+
+    // res.status(200).render('account', {
+    //     title: 'Your account',
+    //     // user: updatedUser,
+    // });
+});
