@@ -2,10 +2,11 @@ const dotenv = require('dotenv');
 const mongoose = require('mongoose');
 
 process.on('uncaughtException', err => {
-    // eslint-disable-next-line no-console
-    console.log('UNCAUGHT EXCEPTION! 💥 shutting down');
-    // eslint-disable-next-line no-console
-    console.log(err.name, err.message);
+    console.log(err);
+    // // eslint-disable-next-line no-console
+    // console.log('UNCAUGHT EXCEPTION! 💥 shutting down');
+    // // eslint-disable-next-line no-console
+    // console.log(err.name, err.message);
     process.exit(1);
 });
 
