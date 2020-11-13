@@ -10,7 +10,6 @@ router
     .get(authController.isLoggedIn, viewController.getTour);
 
 router.route('/me').get(authController.protect, viewController.getAccount);
-
 router
     .route('/login')
     .get(authController.isLoggedIn, viewController.getLoginForm);

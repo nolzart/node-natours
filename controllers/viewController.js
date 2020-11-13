@@ -1,5 +1,4 @@
 const Tour = require('../models/tourModel');
-const User = require('../models/userModel');
 const catchAsync = require('../utils/catchAsync');
 const AppError = require('../utils/AppError');
 
@@ -38,6 +37,7 @@ exports.getLoginForm = (req, res) => {
         'Content-Security-Policy',
         `default-src 'self' https://*; connect-src * data: blob: 'unsafe-inline'; ;font-src 'self' https: data:;frame-ancestors 'self';img-src 'self' data: blob:;object-src 'none';worker-src 'self' blob:;script-src 'self' https://* 'unsafe-inline' 'unsafe-eval' blob:;script-src-attr 'none';style-src 'self'  https://* 'unsafe-inline';upgrade-insecure-requests`
     );
+    console.log('Get login template');
     res.status(200).render('login', {
         title: 'Log into your account',
     });

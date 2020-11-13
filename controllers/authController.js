@@ -23,7 +23,6 @@ const createSendToken = (user, statusCode, res) => {
     };
     if (process.env.NODE_ENV === 'production') cookieOptions.secure = true;
     res.cookie('jwt', token, cookieOptions);
-
     user.password = undefined;
     res.status(statusCode).json({
         status: 'success',
@@ -41,7 +40,6 @@ exports.signup = catchAsync(async (req, res, next) => {
         email: req.body.email,
         password: req.body.password,
         passwordConfirm: req.body.passwordConfirm,
-        role: req.body.role,
     });
 
     createSendToken(newUser, 201, res);
