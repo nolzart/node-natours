@@ -25,7 +25,6 @@ const handleTokenExpiredError = () =>
     new AppError('Your token has expired! Please log in again!', 401);
 
 const sendErrorDev = (err, req, res) => {
-    console.log(req.originalUrl);
     if (req.originalUrl.startsWith('/api'))
         res.status(err.statusCode).json({
             error: err,
@@ -42,6 +41,7 @@ const sendErrorDev = (err, req, res) => {
 
 const sendErrorProd = (err, req, res) => {
     // API
+
     if (req.originalUrl.startsWith('/api')) {
         if (err.isOperational)
             return res.status(err.statusCode).json({
@@ -54,7 +54,7 @@ const sendErrorProd = (err, req, res) => {
             message: 'Something went very wrong!',
         });
     }
-    console.log(err);
+
     // RENDERED PAGE
     if (err.isOperational)
         return res.status(err.statusCode).render('error', {
@@ -70,7 +70,7 @@ const sendErrorProd = (err, req, res) => {
 module.exports = (err, req, res, next) => {
     err.statusCode = err.statusCode || 500;
     err.status = err.status || 'error';
-
+    console.log(err);
     if (process.env.NODE_ENV === 'development') sendErrorDev(err, req, res);
     if (process.env.NODE_ENV === 'production') {
         console.log('In production');
