@@ -34,7 +34,7 @@ export const logout = async () => {
             url: 'http://127.0.0.1:3000/api/v1/users/logout',
         });
 
-        if (res) window.location.reload();
+        if (res.data.status === 'success') window.location.reload();
     } catch (err) {
         showAlert('error', 'Something was wrong! Try again.');
     }

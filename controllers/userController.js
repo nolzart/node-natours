@@ -7,6 +7,7 @@ const catchAsync = require('../utils/catchAsync');
 const AppError = require('../utils/AppError');
 const filterObj = require('../utils/filterObj');
 
+// Multer Storage in Disk
 // const multerStorage = multer.diskStorage({
 //     destination: (req, file, cb) => {
 //         cb(null, 'public/img/users');

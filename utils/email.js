@@ -33,7 +33,6 @@ module.exports = class Email {
     }
 
     async send(template, subject) {
-        console.log(process.env.SENDGRID_API_KEY);
         // 1) get template
         const html = pug.renderFile(
             `${__dirname}/../views/emails/${template}.pug`,

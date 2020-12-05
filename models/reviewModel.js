@@ -76,6 +76,7 @@ reviewSchema.post(/^findOneAnd/, async function () {
     await this.r.constructor.calcAverageRatings(this.r.tour);
 });
 
+// Populating
 reviewSchema.pre(/^find/, function (next) {
     this.populate({
         path: 'user',

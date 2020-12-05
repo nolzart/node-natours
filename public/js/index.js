@@ -3,6 +3,7 @@ import '@babel/polyfill';
 import { login, logout } from './login';
 import { updateSettings } from './updateSettings';
 import { displayMap } from './map';
+import { getCheckoutSession } from './stripe';
 
 // DOM elements
 const loginForm = document.querySelector('.form--login');
@@ -10,6 +11,7 @@ const mapBox = document.getElementById('map');
 const logoutBtn = document.querySelector('.nav__el--logout');
 const userDataForm = document.querySelector('.form-user-data');
 const userPasswordForm = document.querySelector('.form-user-password');
+const bookingBtn = document.getElementById('book-tour');
 
 // Data
 if (mapBox) {
@@ -20,7 +22,6 @@ if (mapBox) {
 if (loginForm)
     loginForm.addEventListener('submit', e => {
         e.preventDefault();
-        console.log('Login Event');
         const email = document.getElementById('email').value;
         const password = document.getElementById('password').value;
         login(email, password);
@@ -62,4 +63,11 @@ if (userPasswordForm)
         document.getElementById('password-current').value = '';
         document.getElementById('password').value = '';
         document.getElementById('password-confirm').value = '';
+    });
+
+if (bookingBtn)
+    bookingBtn.addEventListener('click', e => {
+        const { tourId } = e.target.dataset;
+        e.target.textContent = 'Processing...';
+        getCheckoutSession(tourId);
     });
