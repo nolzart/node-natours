@@ -2,11 +2,9 @@
 import axios from 'axios';
 import { showAlert } from './alert';
 
-const stripe = Stripe
-    ? Stripe(
-          'pk_test_51HnrF2KyEVMDo9Wn6KEslURceFslGebjrSODFs03WIqCuwsZeVKKZ3OWtR3wpnyzZnqFLdlc6jImGCPdVppmF6ON00NAZU5OLi'
-      )
-    : '';
+const stripe = Stripe(
+    'pk_test_51HnrF2KyEVMDo9Wn6KEslURceFslGebjrSODFs03WIqCuwsZeVKKZ3OWtR3wpnyzZnqFLdlc6jImGCPdVppmF6ON00NAZU5OLi'
+);
 
 exports.getCheckoutSession = async tourId => {
     try {
@@ -14,7 +12,7 @@ exports.getCheckoutSession = async tourId => {
             `http://127.0.0.1:3000/api/v1/bookings/checkout-session/${tourId}`
         );
         await stripe.redirectToCheckout({
-            sessionId: session.data.session.id,
+            sessionId: session.data.session.id
         });
     } catch (error) {
         showAlert('error', 'Something was wrong!');

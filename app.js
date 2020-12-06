@@ -8,7 +8,7 @@ const hpp = require('hpp');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const compression = require('compression');
-// const cors = require('cors');
+const cors = require('cors');
 
 const AppError = require('./utils/AppError');
 const globalErrorHandler = require('./controllers/errorController');
@@ -23,6 +23,11 @@ const app = express();
 
 app.set('view engine', 'pug');
 app.set('views', path.join(__dirname, 'views'));
+
+// Implement cors
+app.use(cors());
+
+app.options('*', cors());
 
 // MIDDLEWARES
 
