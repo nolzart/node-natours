@@ -56,6 +56,7 @@ const sendErrorProd = (err, req, res) => {
     }
 
     // RENDERED PAGE
+    consolel.log('ERROR 💥', err)
     if (err.isOperational) {
         return res.status(err.statusCode).render('error', {
             title: 'Something went wrong!',
