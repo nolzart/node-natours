@@ -12,7 +12,7 @@ process.on('uncaughtException', err => {
 dotenv.config({ path: './config.env' });
 const app = require('./app');
 
-const DB = process.env.DATABASE.replace(
+const DB = process.env.DATABASE_URL.replace(
     '<PASSWORD>',
     process.env.DATABASE_PASSWORD
 );
@@ -40,3 +40,10 @@ process.on('unhandledRejection', err => {
     console.log(err.name, err.message);
     server.close(() => process.exit(1));
 });
+
+process.on('SIGTERM', () => {
+    console.log('🖐 SIGTERM RECEIVED. Shutting down gracefully')
+    server.close(() => {
+        console.log('💥 Process terminated!')
+    })
+})
