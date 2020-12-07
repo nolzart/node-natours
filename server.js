@@ -22,7 +22,7 @@ mongoose
         useNewUrlParser: true,
         useCreateIndex: true,
         useUnifiedTopology: true,
-        useFindAndModify: false
+        useFindAndModify: false,
     })
     .then(() => console.log('DB connection successful!'));
 
@@ -42,8 +42,8 @@ process.on('unhandledRejection', err => {
 });
 
 process.on('SIGTERM', () => {
-    console.log('🖐 SIGTERM RECEIVED. Shutting down gracefully')
+    console.log('🖐 SIGTERM RECEIVED. Shutting down gracefully');
     server.close(() => {
-        console.log('💥 Process terminated!')
-    })
-})
+        console.log('💥 Process terminated!');
+    });
+});

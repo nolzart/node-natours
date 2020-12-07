@@ -4,6 +4,7 @@ import { login, logout } from './login';
 import { updateSettings } from './updateSettings';
 import { displayMap } from './map';
 import { getCheckoutSession } from './stripe';
+import { showAlert } from './alert.js';
 
 // DOM elements
 const loginForm = document.querySelector('.form--login');
@@ -71,3 +72,7 @@ if (bookingBtn)
         e.target.textContent = 'Processing...';
         getCheckoutSession(tourId);
     });
+
+const alertMessage = document.querySelector('body').dataset.alert;
+
+if (alertMessage) showAlert(200, alertMessage, 20);
