@@ -1,0 +1,82 @@
+.cta {
+    position: relative;
+    max-width: 105rem;
+    margin: 0 auto;
+    overflow: hidden;
+    background-color: $color-white;
+    padding: 9rem 5rem 9rem 21rem;
+    border-radius: 2rem;
+    -webkit-box-shadow: 0 3rem 8rem 0.5rem $box-shadow-dark;
+    box-shadow: 0 3rem 8rem 0.5rem $box-shadow-dark;
+
+    &__img {
+        height: 15rem;
+        width: 15rem;
+        position: absolute;
+        left: 0;
+        top: 50%;
+        border-radius: 50%;
+        -webkit-box-shadow: 1rem 0.5rem 3rem $box-shadow-dark;
+        box-shadow: 1rem 0.5rem 3rem $box-shadow-dark;
+
+        &--logo {
+            padding: 2rem;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+            -webkit-box-pack: center;
+            -ms-flex-pack: center;
+            justify-content: center;
+            background: -webkit-gradient(
+                linear,
+                left top,
+                right bottom,
+                from($color-primary-light),
+                to($color-primary-dark)
+            );
+            background: linear-gradient(
+                to right bottom,
+                $color-primary-light,
+                $color-primary-dark
+            );
+            z-index: 10;
+            -webkit-transform: translate(-35%, -50%);
+            transform: translate(-35%, -50%);
+
+            img {
+                width: 100%;
+            }
+        }
+
+        &--1 {
+            -webkit-transform: translate(-10%, -50%) scale(0.97);
+            transform: translate(-10%, -50%) scale(0.97);
+            z-index: 9;
+        }
+
+        &--2 {
+            -webkit-transform: translate(15%, -50%) scale(0.94);
+            transform: translate(15%, -50%) scale(0.94);
+            z-index: 8;
+        }
+    }
+
+    &__content {
+        display: grid;
+        grid-template-rows: auto auto;
+        grid-template-columns: 1fr auto;
+        grid-gap: 0.7rem;
+        grid-auto-flow: column;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+    }
+
+    &__text {
+        font-size: 1.9rem;
+        font-weight: 400;
+    }
+}

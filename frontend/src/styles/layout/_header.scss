@@ -1,0 +1,78 @@
+.header {
+    background-color: #444;
+    padding: 0 5rem;
+    height: 8rem;
+    position: relative;
+    z-index: 100;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+
+    @media only screen and (max-width: 62.5em) {
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column;
+    }
+
+    &__logo {
+        img {
+            height: 3.5rem;
+        }
+        @media only screen and (max-width: 62.5em) {
+            -webkit-box-ordinal-group: 0;
+            -ms-flex-order: -1;
+            order: -1;
+            margin-bottom: 1.5rem;
+        }
+    }
+
+    &__hero {
+        height: 100%;
+        &-img {
+            -o-object-fit: cover;
+            object-fit: cover;
+            height: 100%;
+            width: 100%;
+            -o-object-position: 50% 25%;
+            object-position: 50% 25%;
+        }
+
+        &-overlay {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image: -webkit-gradient(
+                linear,
+                left top,
+                right bottom,
+                from($color-primary-light),
+                to($color-primary-dark)
+            );
+            background-image: linear-gradient(
+                to right bottom,
+                $color-primary-light,
+                $color-primary-dark
+            );
+            opacity: 0.85;
+        }
+    }
+}
+
+.section-header {
+    position: relative;
+    height: 38vw;
+    clip-path: polygon(0 0, 100% 0, 100% calc(100% - $section-rotate), 0 100%);
+    -webkit-clip-path: polygon(
+        0 0,
+        100% 0,
+        100% calc(100% - $section-rotate),
+        0 100%
+    );
+}

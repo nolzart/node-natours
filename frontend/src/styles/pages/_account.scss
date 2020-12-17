@@ -1,0 +1,54 @@
+.user-view {
+    background-color: $color-white;
+    max-width: 120rem;
+    margin: 0 auto;
+    min-height: 100vh;
+    border-radius: 3px;
+    overflow: hidden;
+    -webkit-box-shadow: 0 2.5rem 8rem 2rem rgba(0, 0, 0, 0.07);
+    box-shadow: 0 2.5rem 8rem 2rem rgba(0, 0, 0, 0.07);
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+
+    &__menu {
+        -webkit-box-flex: 32rem;
+        -ms-flex: 32rem 0 0px;
+        flex: 32rem 0 0;
+        background-image: -webkit-gradient(
+            linear,
+            left top,
+            right bottom,
+            from($color-primary-light),
+            to($color-primary-dark)
+        );
+        background-image: linear-gradient(
+            to right bottom,
+            $color-primary-light $color-primary-dark
+        );
+        padding: 4rem 0;
+    }
+    &__content {
+        -webkit-box-flex: 1;
+        -ms-flex: 1;
+        flex: 1;
+        padding: 7rem 0;
+    }
+    &__form-container {
+        max-width: 68rem;
+        margin: 0 auto;
+        padding: 0 8rem;
+    }
+}
+
+.admin-nav {
+    margin-top: 5.5rem;
+}
+.admin-nav__heading {
+    margin: 0 5rem 1.5rem 4rem;
+    padding-bottom: 3px;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    color: #f2f2f2;
+    border-bottom: 1px solid currentColor;
+}

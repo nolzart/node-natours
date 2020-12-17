@@ -1,0 +1,122 @@
+.btn {
+    &,
+    &:link,
+    &:visited {
+        font-size: $default-font-size;
+        padding: 1.4rem 3rem;
+        border-radius: 10rem;
+        text-transform: uppercase;
+        display: inline-block;
+        text-decoration: none;
+        position: relative;
+        -webkit-transition: all 0.4s;
+        transition: all 0.4s;
+        font-weight: 400;
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
+        /*Add later when we use this for the button in form*/
+        border: none;
+        cursor: pointer;
+    }
+
+    &:hover {
+        -webkit-transform: translateY(-3px);
+        transform: translateY(-3px);
+        -webkit-box-shadow: 0 1rem 2rem $box-shadow-dark;
+        box-shadow: 0 1rem 2rem $box-shadow-dark;
+    }
+
+    &:active {
+        -webkit-transform: translateY(-1px);
+        transform: translateY(-1px);
+        -webkit-box-shadow: 0 0.5rem 1rem $box-shadow-dark;
+        box-shadow: 0 0.5rem 1rem $box-shadow-dark;
+    }
+
+    &:focus {
+        outline: none;
+        background-color: #2e864b;
+    }
+
+    &--white {
+        background-color: $color-white;
+        color: $color-gray-dark;
+
+        &::after {
+            background-color: $color-white;
+        }
+    }
+
+    &--green {
+        background-color: $color-primary;
+        color: $color-white;
+
+        &::after {
+            background-color: $color-primary;
+        }
+    }
+
+    &--small {
+        padding: 1.25rem 3rem !important;
+        font-size: 1.4rem !important;
+    }
+
+    &-small {
+        &,
+        &:link,
+        &:visited {
+            background-color: $color-primary;
+            color: $color-white;
+            font-size: 1.4rem;
+            padding: 1.25rem 3rem;
+            border-radius: 10rem;
+            text-transform: uppercase;
+            position: relative;
+            -webkit-transition: all 0.2s;
+            transition: all 0.2s;
+            cursor: pointer;
+            text-decoration: none;
+            font-weight: 400;
+            border: none;
+        }
+
+        &:hover {
+            background-color: $color-primary-light;
+        }
+    }
+
+    &-text {
+        &:link,
+        &:visited {
+            color: $color-primary;
+            display: inline-block;
+            text-decoration: none;
+            border-bottom: 1px solid $color-primary;
+            padding: 3px;
+            -webkit-transition: all 0.2s;
+            transition: all 0.2s;
+        }
+
+        &:hover {
+            background-color: $color-primary;
+            color: $color-white;
+            -webkit-box-shadow: 0 1rem 2rem $box-shadow-dark;
+            box-shadow: 0 1rem 2rem $box-shadow-dark;
+            -webkit-transform: translateY(-2px);
+            transform: translateY(-2px);
+        }
+
+        &:active {
+            -webkit-transform: translateY(0);
+            transform: translateY(0);
+            -webkit-box-shadow: 0 0.5rem 1rem $box-shadow-dark;
+            box-shadow: 0 0.5rem 1rem $box-shadow-dark;
+        }
+
+        &:focus {
+            outline: none;
+            outline: 3px solid $color-primary;
+            outline-offset: 3px;
+        }
+    }
+}
