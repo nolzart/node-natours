@@ -1,8 +1,19 @@
 import React from 'react';
-// import Overview from './containers/Overview';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
-function App() {
-    return <div className='App'>{/* <Overview /> */}</div>;
-}
+import Tours from './containers/Tours';
+import Layout from './components/Layout';
+
+const App = () => {
+    return (
+        <Router>
+            <Layout>
+                <Switch>
+                    <Route exact paht='/' component={Tours} />
+                </Switch>
+            </Layout>
+        </Router>
+    );
+};
 
 export default App;

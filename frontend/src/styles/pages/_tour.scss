@@ -56,6 +56,23 @@
     }
 }
 
+.section-header {
+    position: relative;
+    height: 38vw;
+    clip-path: polygon(
+        0 0,
+        100% 0,
+        100% calc(100% - #{$section-rotate}),
+        0 100%
+    );
+    -webkit-clip-path: polygon(
+        0 0,
+        100% 0,
+        100% calc(100% - #{$section-rotate}),
+        0 100%
+    );
+}
+
 .section-pictures {
     display: -webkit-box;
     display: -ms-flexbox;
@@ -63,16 +80,16 @@
     clip-path: polygon(
         0 $section-rotate,
         100% 0,
-        100% calc(100% - $section-rotate),
+        100% calc(100% - #{$section-rotate}),
         0 100%
     );
     -webkit-clip-path: polygon(
-        0 $section-rotate,
+        0 #{$section-rotate},
         100% 0,
-        100% calc(100% - $section-rotate),
+        100% calc(100% - #{$section-rotate}),
         0 100%
     );
-    margin-top: calc(0px - $section-rotate);
+    margin-top: calc(0px - #{$section-rotate});
     position: relative;
     z-index: 1000;
 }
@@ -99,7 +116,7 @@
 
 .section-description {
     background-color: #fcfcfc;
-    margin-top: calc(0px - $section-rotate);
+    margin-top: calc(0px - #{$section-rotate});
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -107,7 +124,7 @@
     & > * {
         padding: 0 8vw;
         padding-top: 14vw;
-        padding-bottom: calc(1vw + $section-rotate);
+        padding-bottom: calc(1vw + #{$section-rotate});
         -webkit-box-flex: 0;
         -ms-flex: 0 0 50%;
         flex: 0 0 50%;
@@ -131,12 +148,12 @@
 .section-map {
     position: relative;
     height: 65rem;
-    margin-top: calc(0px - $section-rotate);
+    margin-top: calc(0px - #{$section-rotate});
 }
 
 .section-reviews {
-    margin-top: calc(0px - $section-rotate);
-    padding: calc(5rem + $section-rotate 0);
+    margin-top: calc(0px - #{$section-rotate});
+    padding: calc(5rem + #{$section-rotate}) 0;
     position: relative;
     z-index: 1000;
     background: -webkit-gradient(
@@ -152,23 +169,23 @@
         $color-primary-dark
     );
     clip-path: polygon(
-        0 $section-rotate,
+        0 #{$section-rotate},
         100% 0,
-        100% calc(100% - $section-rotate),
+        100% calc(100% - #{$section-rotate}),
         0 100%
     );
     -webkit-clip-path: polygon(
-        0 $section-rotate,
+        0 #{$section-rotate},
         100% 0,
-        100% calc(100% - $section-rotate),
+        100% calc(100% - #{$section-rotate}),
         0 100%
     );
 }
 
 .section-cta {
-    margin-top: calc(0px - $section-rotate);
+    margin-top: calc(0px - #{$section-rotate});
     padding: 3rem;
     padding-bottom: 11rem;
-    padding-top: calc(15rem + $section-rotate);
+    padding-top: calc(15rem + #{$section-rotate});
     background-color: $color-white-2;
 }
