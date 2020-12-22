@@ -1,7 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
 
-const Header = ({ user }) => {
+//Actions
+import { logoutUser } from '../store/actions/authActions';
+
+const Header = () => {
+    const { user, isAuthenticated } = useSelector(state => state.auth);
+    const dispatch = useDispatch();
     return (
         <header className='header'>
             <nav className='nav nav--tours'>
@@ -13,14 +19,18 @@ const Header = ({ user }) => {
                 <img src='/img/logo-white.png' alt='Natours logo' />
             </div>
             <nav className='nav nav--user'>
-                {user ? (
+                {isAuthenticated ? (
                     <>
-                        <Link to='/' className='nav__el nav__el--logout'>
+                        <button
+                            type='button'
+                            className='nav__el nav__el--logout'
+                            onClick={() => dispatch(logoutUser())}
+                        >
                             Log out
-                        </Link>
+                        </button>
                         <Link to='/me' className='nav__el'>
                             <img
-                                src={`/img/users/${user.photo}`}
+                                src={`https://mern-natours.herokuapp.com/img/users/${user.photo}`}
                                 alt={`${user.name}`}
                                 className='nav__user-img'
                             />

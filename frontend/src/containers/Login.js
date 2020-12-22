@@ -1,14 +1,18 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import axios from 'axios';
+import { useDispatch } from 'react-redux';
+
+import { loginUser } from '../store/actions/authActions';
 
 const Login = () => {
+    const history = useHistory();
+    const dispatch = useDispatch();
     const [inputValues, setInputValues] = useState({
         email: '',
         password: '',
     });
 
-    const history = useHistory();
+    const singin = inputValues => dispatch(loginUser(inputValues));
 
     const handleChange = e => {
         const { name, value } = e.target;
@@ -17,26 +21,10 @@ const Login = () => {
             [name]: value,
         });
     };
-
-    const handleSubmit = async e => {
+    const handleSubmit = e => {
         e.preventDefault();
-        try {
-            const res = await axios({
-                method: 'POST',
-                url: 'https://mern-natours.herokuapp.com/api/v1/users/login',
-                data: {
-                    email: inputValues.email,
-                    password: inputValues.password,
-                },
-                headers: {
-                    withCredentials: true,
-                },
-            });
-
-            if (res.data.status === 'success') history.push('/');
-        } catch (err) {
-            console.log(err);
-        }
+        singin(inputValues);
+        history.push('/');
     };
 
     return (
