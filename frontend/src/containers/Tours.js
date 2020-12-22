@@ -1,21 +1,23 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 
 import Tour from '../components/TourCard';
+import { getTours } from '../store/actions/tourActions';
 
 const Tours = () => {
-    const [tours, setTours] = useState([]);
+    const tours = useSelector(state => state.tour.tours);
+    const dispatch = useDispatch();
     useEffect(() => {
         document.title = 'Natours | All tours';
-        axios
-            .get('https://mern-natours.herokuapp.com/api/v1/tours')
-            .then(response => setTours(response.data.data.data));
+
+        dispatch(getTours());
     }, []);
 
     return (
         <main className='main'>
             <div className='card-container'>
-                {tours && tours.map(tour => <Tour tour={tour} key={tour.id} />)}
+                {tours.length > 0 &&
+                    tours.map(tour => <Tour tour={tour} key={tour.id} />)}
             </div>
         </main>
     );

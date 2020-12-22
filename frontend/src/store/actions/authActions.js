@@ -26,7 +26,6 @@ export const loginUser = ({ email, password }) => async dispatch => {
 
 export const logoutUser = () => async dispatch => {
     try {
-        console.log('Logout..');
         await axios.get(
             'https://mern-natours.herokuapp.com/api/v1/users/logout'
         );

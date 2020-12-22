@@ -1,7 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useCallback } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { useParams } from 'react-router-dom';
 import axios from 'axios';
 
 import { MapBox } from '../components/mapboxgl';
+import { getSingleTour } from '../store/actions/tourActions';
 
 const DetailItem = ({ useTag, classContainer, classSvg, children }) => (
     <div className={classContainer}>
@@ -22,7 +25,6 @@ const getCheckoutSession = async tourId => {
         const session = await axios.get(
             `https://mern-natours.herokuapp.com/api/v1/bookings/checkout-session/${tourId}`
         );
-        console.log(session);
         await stripe.redirectToCheckout({
             sessionId: session.data.session.id,
         });
@@ -32,31 +34,22 @@ const getCheckoutSession = async tourId => {
     }
 };
 
-const TourDetails = props => {
-    const [tour, setTour] = useState('');
-    console.log(
-        window.Stripe(
-            'pk_test_51HnrF2KyEVMDo9Wn6KEslURceFslGebjrSODFs03WIqCuwsZeVKKZ3OWtR3wpnyzZnqFLdlc6jImGCPdVppmF6ON00NAZU5OLi'
-        )
-    );
-    useEffect(() => {
-        const getData = async () => {
-            try {
-                const resId = await axios.get(
-                    `https://mern-natours.herokuapp.com/api/v1/tours?slug=${props.match.params.slug}&fields=id`
-                );
-                const resTour = await axios.get(
-                    `https://mern-natours.herokuapp.com/api/v1/tours/${resId.data.data.data[0].id}`
-                );
-                setTour(resTour.data.data.data);
-            } catch (err) {
-                console.log(err);
-            }
-        };
-        getData();
-    }, []);
+const TourDetails = () => {
+    const tour = useSelector(state => state.tour.tour);
+    const dispatch = useDispatch();
+    const { slug } = useParams();
 
-    return tour ? (
+    const getTour = useCallback(slug => dispatch(getSingleTour(slug)), [
+        dispatch,
+    ]);
+
+    useEffect(() => {
+        getTour(slug);
+    }, [slug, getTour]);
+
+    return Object.entries(tour).length === 0 ? (
+        <p>Loading...</p>
+    ) : (
         <>
             <section className='section-header'>
                 <div className='header__hero'>
@@ -272,8 +265,6 @@ const TourDetails = props => {
                 </div>
             </section>
         </>
-    ) : (
-        <p>Loading...</p>
     );
 };
 
