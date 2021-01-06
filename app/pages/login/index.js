@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useRouter } from 'next/router';
 import { useDispatch } from 'react-redux';
 
-import { loginUser } from '../store/actions/authActions';
+import { loginUser } from '../../store/actions/authActions';
 
 const Login = () => {
-    const history = useHistory();
     const dispatch = useDispatch();
+    const router = useRouter();
     const [inputValues, setInputValues] = useState({
         email: '',
         password: '',
@@ -24,7 +24,7 @@ const Login = () => {
     const handleSubmit = e => {
         e.preventDefault();
         singin(inputValues);
-        history.push('/');
+        router.push('/');
     };
 
     return (

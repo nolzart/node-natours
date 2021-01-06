@@ -1,10 +1,10 @@
 import React, { useEffect, useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useParams } from 'react-router-dom';
-import axios from 'axios';
+import { useRouter } from 'next/router';
+// import axios from 'axios';
 
-import { MapBox } from '../components/mapboxgl';
-import { getSingleTour } from '../store/actions/tourActions';
+import { MapBox } from '../../components/mapboxgl';
+import { getSingleTour } from '../../store/actions/tourActions';
 
 const DetailItem = ({ useTag, classContainer, classSvg, children }) => (
     <div className={classContainer}>
@@ -16,29 +16,30 @@ const DetailItem = ({ useTag, classContainer, classSvg, children }) => (
     </div>
 );
 
-const stripe = window.Stripe(
-    'pk_test_51HnrF2KyEVMDo9Wn6KEslURceFslGebjrSODFs03WIqCuwsZeVKKZ3OWtR3wpnyzZnqFLdlc6jImGCPdVppmF6ON00NAZU5OLi'
-);
+// const stripe = window.Stripe(
+//     'pk_test_51HnrF2KyEVMDo9Wn6KEslURceFslGebjrSODFs03WIqCuwsZeVKKZ3OWtR3wpnyzZnqFLdlc6jImGCPdVppmF6ON00NAZU5OLi'
+// );
 
-const getCheckoutSession = async tourId => {
-    try {
-        const session = await axios.get(
-            `https://mern-natours.herokuapp.com/api/v1/bookings/checkout-session/${tourId}`
-        );
-        await stripe.redirectToCheckout({
-            sessionId: session.data.session.id,
-        });
-    } catch (error) {
-        console.log(error);
-        // showAlert('error', 'Something was wrong!');
-    }
-};
+// const getCheckoutSession = async tourId => {
+//     try {
+//         const session = await axios.get(
+//             `https://mern-natours.herokuapp.com/api/v1/bookings/checkout-session/${tourId}`
+//         );
+//         await stripe.redirectToCheckout({
+//             sessionId: session.data.session.id,
+//         });
+//     } catch (error) {
+//         console.log(error);
+//         // showAlert('error', 'Something was wrong!');
+//     }
+// };
 
 const TourDetails = () => {
     const tour = useSelector(state => state.tour.tour);
     const dispatch = useDispatch();
-    const { slug } = useParams();
-
+    const router = useRouter();
+    const { slug } = router.query;
+    console.log(slug);
     const getTour = useCallback(slug => dispatch(getSingleTour(slug)), [
         dispatch,
     ]);
@@ -256,7 +257,7 @@ const TourDetails = () => {
                             id='book-tour'
                             type='button'
                             data-tour-id={`${tour.id}`}
-                            onClick={() => getCheckoutSession(tour.id)}
+                            onClick={() => console.log(tour.id)}
                         >
                             Book tour now!
                         </button>

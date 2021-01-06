@@ -23,8 +23,9 @@ export const getSingleTour = slug => async dispatch => {
         );
 
         const resTour = await axios.get(
-            `https://mern-natours.herokuapp.com/api/v1/tours/${resId.data.data.data.id}`
+            `https://mern-natours.herokuapp.com/api/v1/tours/${resId.data.data.data[0].id}`
         );
+
         dispatch({
             type: GET_TOUR,
             payload: resTour.data.data,

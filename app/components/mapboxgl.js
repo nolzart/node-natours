@@ -1,3 +1,4 @@
+import React from 'react';
 import ReactMapboxGl, { Marker, Popup } from 'react-mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 
@@ -24,8 +25,8 @@ export const MapBox = ({ tour }) => {
             id='map'
             className='section-map'
         >
-            {tour.locations.map(loc => (
-                <>
+            {/* {tour.locations.map(loc => (
+                <React.Fragment key={loc._id}>
                     <Marker coordinates={loc.coordinates} anchor='bottom'>
                         <div className='marker'></div>
                     </Marker>
@@ -34,7 +35,27 @@ export const MapBox = ({ tour }) => {
                             Day {loc.day}: {loc.description}
                         </p>
                     </Popup>
-                </>
+                </React.Fragment>
+            ))} */}
+            {tour.locations.map(loc => (
+                <Marker
+                    coordinates={loc.coordinates}
+                    anchor='bottom'
+                    key={`marker-${loc._id}`}
+                >
+                    <div className='marker'></div>
+                </Marker>
+            ))}
+            {tour.locations.map(loc => (
+                <Popup
+                    coordinates={loc.coordinates}
+                    offset={30}
+                    key={`popup-${loc._id}`}
+                >
+                    <p>
+                        Day {loc.day}: {loc.description}
+                    </p>
+                </Popup>
             ))}
         </Map>
     );

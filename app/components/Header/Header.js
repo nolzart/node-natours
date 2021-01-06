@@ -1,18 +1,19 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import { useSelector, useDispatch } from 'react-redux';
 
 //Actions
-import { logoutUser } from '../store/actions/authActions';
+import { logoutUser } from '../../store/actions/authActions';
 
 const Header = () => {
     const { user, isAuthenticated } = useSelector(state => state.auth);
+
     const dispatch = useDispatch();
     return (
         <header className='header'>
             <nav className='nav nav--tours'>
-                <Link to='/' className='nav__el'>
-                    All tours
+                <Link href='/'>
+                    <a className='nav__el'>All tours</a>
                 </Link>
             </nav>
             <div className='header__logo'>
@@ -28,22 +29,24 @@ const Header = () => {
                         >
                             Log out
                         </button>
-                        <Link to='/me' className='nav__el'>
-                            <img
-                                src={`https://mern-natours.herokuapp.com/img/users/${user.photo}`}
-                                alt={`${user.name}`}
-                                className='nav__user-img'
-                            />
-                            <span>{user.name.split(' ')[0]}</span>
+                        <Link href='/me'>
+                            <a className='nav__el'>
+                                <img
+                                    src={`https://mern-natours.herokuapp.com/img/users/${user.photo}`}
+                                    alt={`${user.name}`}
+                                    className='nav__user-img'
+                                />
+                                <span>{user.name.split(' ')[0]}</span>
+                            </a>
                         </Link>
                     </>
                 ) : (
                     <>
-                        <Link to='/login' className='nav__el'>
-                            Login
+                        <Link href='/login'>
+                            <a className='nav__el'>Login</a>
                         </Link>
-                        <Link to='/signup' className='nav__el nav__el--cta'>
-                            Sign up
+                        <Link href='/signup'>
+                            <a className='nav__el nav__el--cta'>Sign up</a>
                         </Link>
                     </>
                 )}

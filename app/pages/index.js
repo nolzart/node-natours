@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import Tour from '../components/TourCard';
 import { getTours } from '../store/actions/tourActions';
 
-const Tours = () => {
+const Index = () => {
     const tours = useSelector(state => state.tour.tours);
     const dispatch = useDispatch();
     useEffect(() => {
@@ -23,4 +23,4 @@ const Tours = () => {
     );
 };
 
-export default Tours;
+export default Index;

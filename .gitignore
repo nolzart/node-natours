@@ -1,6 +1,6 @@
-backend/node_modules
-frontend/node_modules
 *.env
+*.next
 .cache
 
 public/js/bundle.js.map
+node_modules

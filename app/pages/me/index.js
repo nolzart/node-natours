@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
 
-import ImageUpload from '../components/ImageUpload';
+import ImageUpload from '../../components/ImageUpload';
 
 const navItem = (link, text, icon, active) => (
     <li className={`${active ? 'side__nav--active' : ''}`}>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 
 const DetailItem = ({ content, useTag }) => (
     <div className='card__data'>
@@ -72,11 +72,8 @@ const TourCard = ({ tour }) => {
                     </span>
                     <span className='card__footer-text'>{`rating (${tour.ratingsQuantity})`}</span>
                 </p>
-                <Link
-                    to={`/tour/${tour.slug}`}
-                    className='btn btn--green btn--small'
-                >
-                    Details
+                <Link href={`/tour/${tour.slug}`}>
+                    <a className='btn btn--green btn--small'>Details</a>
                 </Link>
             </div>
         </div>
