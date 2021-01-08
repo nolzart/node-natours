@@ -27,7 +27,7 @@ const TourCard = ({ tour }) => {
                     {/* <div className='card__picture-overlay'>&nsb;</div> */}
                     <div className='card__picture-overlay'></div>
                     <img
-                        src={`https://mern-natours.herokuapp.com/img/tours/${tour.imageCover}`}
+                        src={`/img/tours/${tour.imageCover}`}
                         alt={tour.name}
                         className='card__picture-img'
                     />

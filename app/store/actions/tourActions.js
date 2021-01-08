@@ -3,9 +3,7 @@ import { GET_ALL_TOURS, GET_TOUR } from '../types/tourTypes';
 
 export const getTours = () => async dispatch => {
     try {
-        const res = await axios.get(
-            'https://mern-natours.herokuapp.com/api/v1/tours'
-        );
+        const res = await axios.get('/api/v1/tours');
 
         dispatch({
             type: GET_ALL_TOURS,
@@ -18,12 +16,10 @@ export const getTours = () => async dispatch => {
 
 export const getSingleTour = slug => async dispatch => {
     try {
-        const resId = await axios.get(
-            `https://mern-natours.herokuapp.com/api/v1/tours?slug=${slug}&fields=id`
-        );
+        const resId = await axios.get(`/api/v1/tours?slug=${slug}&fields=id`);
 
         const resTour = await axios.get(
-            `https://mern-natours.herokuapp.com/api/v1/tours/${resId.data.data.data[0].id}`
+            `/api/v1/tours/${resId.data.data.data[0].id}`
         );
 
         dispatch({

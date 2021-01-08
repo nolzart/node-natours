@@ -5,7 +5,7 @@ export const loginUser = ({ email, password }) => async dispatch => {
     try {
         const res = await axios({
             method: 'POST',
-            url: 'https://mern-natours.herokuapp.com/api/v1/users/login',
+            url: '/api/v1/users/login',
             data: {
                 email,
                 password,
@@ -27,7 +27,7 @@ export const loginUser = ({ email, password }) => async dispatch => {
 export const logoutUser = () => async dispatch => {
     try {
         await axios.get(
-            'https://mern-natours.herokuapp.com/api/v1/users/logout'
+            '/api/v1/users/logout'
         );
         dispatch({
             type: LOGOUT_USER,

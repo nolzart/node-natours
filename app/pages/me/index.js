@@ -26,9 +26,7 @@ const Account = () => {
     } = useForm();
     const { user, isAuthenticated, token } = useSelector(state => state.auth);
 
-    const [photo, setPhoto] = useState(
-        `https://mern-natours.herokuapp.com/img/users/${user.photo}`
-    );
+    const [photo, setPhoto] = useState(`/img/users/${user.photo}`);
 
     const onSubmit = async data => {
         data.photo = data.name !== undefined ? photo : undefined;

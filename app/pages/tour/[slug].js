@@ -62,7 +62,7 @@ const TourDetails = () => {
                 <div className='header__hero'>
                     <div className='header__hero-overlay'>&nbsp;</div>
                     <img
-                        src={`https://mern-natours.herokuapp.com/img/tours/${tour.imageCover}`}
+                        src={`/img/tours/${tour.imageCover}`}
                         alt={tour.name}
                         className='header__hero-img'
                     />
@@ -163,7 +163,7 @@ const TourDetails = () => {
                                         key={guide.id}
                                     >
                                         <img
-                                            src={`https://mern-natours.herokuapp.com/img/users/${guide.photo}`}
+                                            src={`/img/users/${guide.photo}`}
                                             alt={`${guide.role}`}
                                             className='overview-box__img'
                                         />
@@ -194,7 +194,7 @@ const TourDetails = () => {
                     tour.images.map((img, i) => (
                         <div className='picture-box' key={`tour-image-${i}`}>
                             <img
-                                src={`https://mern-natours.herokuapp.com/img/tours/${img}`}
+                                src={`/img/tours/${img}`}
                                 alt={`${tour.name} Tour ${i + 1}`}
                                 className={`picture-box__img picture-box__img--${
                                     i + 1
@@ -211,7 +211,7 @@ const TourDetails = () => {
                             <div className='reviews__card' key={review.id}>
                                 <div className='reviews__avatar'>
                                     <img
-                                        src={`https://mern-natours.herokuapp.com/img/users/${review.user.photo}`}
+                                        src={`/img/users/${review.user.photo}`}
                                         alt={`${review.user.name}`}
                                         className='reviews__avatar-img'
                                     />
@@ -246,12 +246,12 @@ const TourDetails = () => {
                         <img src='/img/logo-white.png' alt='Natours logo' />
                     </div>
                     <img
-                        src={`https://mern-natours.herokuapp.com/img/tours/${tour.images[1]}`}
+                        src={`/img/tours/${tour.images[1]}`}
                         alt=''
                         className='cta__img cta__img--1'
                     />
                     <img
-                        src={`https://mern-natours.herokuapp.com/img/tours/${tour.images[2]}`}
+                        src={`/img/tours/${tour.images[2]}`}
                         alt=''
                         className='cta__img cta__img--2'
                     />

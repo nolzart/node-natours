@@ -32,7 +32,7 @@ const Header = () => {
                         <Link href='/me'>
                             <a className='nav__el'>
                                 <img
-                                    src={`https://mern-natours.herokuapp.com/img/users/${user.photo}`}
+                                    src={`/img/users/${user.photo}`}
                                     alt={`${user.name}`}
                                     className='nav__user-img'
                                 />
