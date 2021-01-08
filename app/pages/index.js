@@ -1,17 +1,22 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
+import { wrapper } from '../store/store';
 import Tour from '../components/TourCard';
 import { getTours } from '../store/actions/tourActions';
 
-const Index = () => {
-    const tours = useSelector(state => state.tour.tours);
+export const getServerSideProps = wrapper.getServerSideProps(
+    async ({ store }) => await store.dispatch(getTours())
+);
+
+const Page = () => {
+    const { tours } = useSelector(state => state.tour);
     const dispatch = useDispatch();
+
     useEffect(() => {
         document.title = 'Natours | All tours';
-
         dispatch(getTours());
-    }, []);
+    }, [dispatch]);
 
     return (
         <main className='main'>
@@ -23,4 +28,4 @@ const Index = () => {
     );
 };
 
-export default Index;
+export default Page;

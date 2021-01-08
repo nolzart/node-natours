@@ -5,6 +5,7 @@ import { useRouter } from 'next/router';
 
 import { MapBox } from '../../components/mapboxgl';
 import { getSingleTour } from '../../store/actions/tourActions';
+import { wrapper } from '../../store/store';
 
 const DetailItem = ({ useTag, classContainer, classSvg, children }) => (
     <div className={classContainer}>
@@ -34,17 +35,22 @@ const DetailItem = ({ useTag, classContainer, classSvg, children }) => (
 //     }
 // };
 
+export const getServerSideProps = wrapper.getServerSideProps(
+    async ({ store, params }) =>
+        await store.dispatch(getSingleTour(params.slug))
+);
+
 const TourDetails = () => {
     const tour = useSelector(state => state.tour.tour);
     const dispatch = useDispatch();
     const router = useRouter();
     const { slug } = router.query;
-    console.log(slug);
     const getTour = useCallback(slug => dispatch(getSingleTour(slug)), [
         dispatch,
     ]);
 
     useEffect(() => {
+        document.title = `Tour | ${slug}`;
         getTour(slug);
     }, [slug, getTour]);
 
@@ -176,8 +182,10 @@ const TourDetails = () => {
                 </div>
                 <div className='description-box'>
                     <h2 className='heading-secondary ma-bt-lg'>{`About ${tour.name} tour`}</h2>
-                    {tour.description.split(['\n']).map(p => (
-                        <p className='description__text'>{p}</p>
+                    {tour.description.split(['\n']).map((p, i) => (
+                        <p className='description__text' key={`paragraph-${i}`}>
+                            {p}
+                        </p>
                     ))}
                 </div>
             </section>

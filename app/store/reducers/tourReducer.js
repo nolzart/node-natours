@@ -4,7 +4,6 @@ const initialState = {
     tours: [],
     tour: {},
 };
-
 const tourReducer = (state = initialState, action) => {
     switch (action.type) {
         case GET_ALL_TOURS:
