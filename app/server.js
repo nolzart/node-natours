@@ -10,14 +10,14 @@ const handle = app.getRequestHandler();
 
 const apiPaths = {
     '/api': {
-        target: 'http://localhost:5000',
+        target: 'http://127.0.0.1:5000',
         pathRewrite: {
             '^/api': '/api',
         },
         changeOrigin: true,
     },
     '/img': {
-        target: 'http://localhost:5000',
+        target: 'http://127.0.0.1:5000',
         pathRewrite: {
             '^/img': '/img',
         },
@@ -36,7 +36,7 @@ app.prepare()
         server.all('*', (req, res) => handle(req, res));
         server.listen(port, err => {
             if (err) throw err;
-            console.log(`Ready on http:localhost:${port}`);
+            console.log(`Ready on http://localhost:${port}`);
         });
     })
     .catch(err => {

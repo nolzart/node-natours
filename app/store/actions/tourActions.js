@@ -3,7 +3,9 @@ import { GET_ALL_TOURS, GET_TOUR } from '../types/tourTypes';
 
 export const getTours = () => async dispatch => {
     try {
-        const res = await axios.get('/api/v1/tours');
+        const res = await axios.get('/api/v1/tours', {
+            // baseUrl: 'http://127.0.0.1:500',
+        });
 
         dispatch({
             type: GET_ALL_TOURS,

@@ -14,13 +14,12 @@ const signToken = id =>
 
 const createSendToken = (user, statusCode, req, res) => {
     const token = signToken(user._id);
-
     res.cookie('jwt', token, {
         expires: new Date(
             Date.now() + process.env.JWT_COOKIE_EXPIRES_IN * 24 * 60 * 60 * 1000
         ),
         httpOnly: true,
-        secure: req.secure || req.headers['x-forwarded-proto'] === 'https',
+        // secure: req.secure || req.headers['x-forwarded-proto'] === 'https', // only for production
     });
     user.password = undefined;
 
@@ -32,6 +31,9 @@ const createSendToken = (user, statusCode, req, res) => {
         },
     });
 };
+
+exports.refreshToken = (req, res, next) =>
+    createSendToken(req.user, 200, req, res);
 
 exports.signup = catchAsync(async (req, res, next) => {
     // NOTE: SERIUS SECURITY FLAW --> const newUser = await User.creatE(req.body);
@@ -81,7 +83,6 @@ exports.protect = catchAsync(async (req, res, next) => {
     )
         token = req.headers.authorization.split(' ')[1];
     else if (req.cookies.jwt) token = req.cookies.jwt;
-
     if (!token || token === 'loggedout')
         return next(
             new AppError('You are not logged in! Please log in to get access'),
@@ -131,7 +132,8 @@ exports.isLoggedIn = async (req, res, next) => {
             // Check if user changed password after the token was issued
             if (currentUser.changedPasswordAfter(decoded.iat)) return next();
 
-            res.locals.user = currentUser;
+            // res.locals.user = currentUser; used for pug templates
+            req.user = currentUser;
             return next();
         } catch (err) {
             return next();

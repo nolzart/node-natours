@@ -11,6 +11,12 @@ router.get('/logout', authController.logout);
 router.post('/forgotPassword', authController.forgotPassword);
 router.patch('/resetPassword/:token', authController.resetPassword);
 
+router.get(
+    '/refreshToken',
+    authController.isLoggedIn,
+    authController.refreshToken
+);
+
 router.use(authController.protect);
 
 router.patch('/updateMyPassword', authController.updatePassword);
@@ -23,7 +29,7 @@ router.patch(
     userController.updateMe
 );
 
-router.use(authController.restrictTo('admin'));
+// router.use(authController.restrictTo('admin'));
 
 router
     .route('/')

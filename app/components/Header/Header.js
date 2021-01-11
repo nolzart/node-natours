@@ -1,14 +1,12 @@
 import React from 'react';
 import Link from 'next/link';
 import { useSelector, useDispatch } from 'react-redux';
-
 //Actions
 import { logoutUser } from '../../store/actions/authActions';
 
 const Header = () => {
-    const { user, isAuthenticated } = useSelector(state => state.auth);
-
     const dispatch = useDispatch();
+    const { user, isAuthenticated } = useSelector(state => state.auth);
     return (
         <header className='header'>
             <nav className='nav nav--tours'>

@@ -27,7 +27,6 @@ const Account = () => {
     const { user, isAuthenticated, token } = useSelector(state => state.auth);
 
     const [photo, setPhoto] = useState(`/img/users/${user.photo}`);
-
     const onSubmit = async data => {
         data.photo = data.name !== undefined ? photo : undefined;
         try {
@@ -35,14 +34,7 @@ const Account = () => {
                 data.name !== undefined
                     ? 'http://127.0.0.1:5000/api/v1/users/updateMe'
                     : 'http://127.0.0.1:5000/api/v1/users/updateMyPassword';
-            await axios({
-                method: 'PATCH',
-                url,
-                data,
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                },
-            });
+            await axios.patch(url, { data });
         } catch (err) {
             console.log(err);
         }
