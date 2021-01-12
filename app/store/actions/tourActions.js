@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { GET_ALL_TOURS, GET_TOUR } from '../types/tourTypes';
+import { GET_ALL_TOURS, GET_TOUR, GET_MY_TOURS } from '../types/tourTypes';
 
 export const getTours = () => async dispatch => {
     try {
@@ -28,6 +28,16 @@ export const getSingleTour = slug => async dispatch => {
             type: GET_TOUR,
             payload: resTour.data.data,
         });
+    } catch (err) {
+        console.log(err);
+    }
+};
+
+export const getMyTours = () => async dispatch => {
+    try {
+        const res = await axios.get(`/api/v1/bookings/my-tours`);
+
+        dispatch({ type: GET_MY_TOURS, payload: res.data.data.data });
     } catch (err) {
         console.log(err);
     }

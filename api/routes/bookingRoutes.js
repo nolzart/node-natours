@@ -5,6 +5,7 @@ const bookingController = require('../controllers/bookingController');
 const router = express.Router();
 router.use(authController.protect);
 
+router.route('/my-tours').get(bookingController.getMyBookings);
 router
     .route('/checkout-session/:tourId')
     .get(bookingController.getCheckoutSession);

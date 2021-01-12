@@ -46,6 +46,19 @@ exports.getCheckoutSession = catchAsync(async (req, res, next) => {
     });
 });
 
+exports.getMyBookings = catchAsync(async (req, res, next) => {
+    const bookings = await Booking.find({ user: req.user.id });
+    const tourIDs = bookings.map(el => el.tour.id);
+
+    const tours = await Tour.find({ _id: { $in: tourIDs } });
+    res.status(200).json({
+        status: 'success',
+        data: {
+            data: tours,
+        },
+    });
+});
+
 // exports.createBookingCheckout = async (req, res, next) => {
 //     // Temporary solution, because that solution is not SECURE
 //     const { tour, user, price } = req.query;
