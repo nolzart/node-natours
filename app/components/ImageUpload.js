@@ -1,32 +1,35 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-const ImageUpload = ({ name, photo, setPhoto }) => {
-    const imagesHandler = e => {
-        const reader = new FileReader();
+const ImageUpload = ({ name, setPhoto, userPhoto }) => {
+    const [previewPhoto, setPreviewPhoto] = useState();
+    const handleImageChange = e => {
+        e.preventDefault();
+        const blobImage = URL.createObjectURL(e.target.files[0]);
+        setPhoto(e.target.files[0]);
+        setPreviewPhoto(blobImage);
+        // let reader = new FileReader();
+        // let file = e.target.files[0];
 
-        reader.onload = () => {
-            if (reader.readyState === 2) {
-                setPhoto(reader.result);
-            }
-        };
+        // reader.onloadend = () => setPhoto(reader.result);
 
-        reader.readAsDataURL(e.target.files[0]);
+        // reader.readAsDataURL(file);
     };
 
     return (
         <div className='form__group form__photo-upload'>
             <img
-                src={photo}
+                src={!previewPhoto ? `/img/users/${userPhoto}` : previewPhoto}
                 alt={`User ${name}`}
                 className='form__user-photo'
             />
+
             <input
                 type='file'
                 className='form__upload'
                 accept='images/*'
                 name='photo'
                 id='photo'
-                onChange={imagesHandler}
+                onChange={handleImageChange}
                 // ref={register}
             />
             <label htmlFor='photo'>Choose new photos</label>

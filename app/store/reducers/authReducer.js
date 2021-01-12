@@ -4,6 +4,8 @@ import {
     LOGOUT_USER,
     GET_REFRESH_TOKEN,
     REFRESH_TOKEN,
+    UPDATE_USER_DATA,
+    UPDATE_USER_PASSWORD,
 } from '../types/authTypes';
 
 const initialState = {
@@ -23,15 +25,16 @@ const authReducer = (state = initialState, action) => {
             };
         case LOGIN_USER:
         case REFRESH_TOKEN:
-            const { token } = action.payload;
-            const { user } = action.payload.data;
+        case UPDATE_USER_PASSWORD:
             return {
-                isAuthenticated: true,
-                user,
-                token,
+                isAuthenticated: action.payload.token ? true : false,
+                user: action.payload.data.user,
+                token: action.payload.token,
                 loading: false,
                 err: null,
             };
+        case LOGOUT_USER:
+            return initialState;
         case LOGIN_USER_ERROR:
             return {
                 isAuthenticated: false,
@@ -40,8 +43,11 @@ const authReducer = (state = initialState, action) => {
                 loading: false,
                 err: action.payload,
             };
-        case LOGOUT_USER:
-            return initialState;
+        case UPDATE_USER_DATA:
+            return {
+                ...state,
+                user: action.payload.user,
+            };
         default:
             return state;
     }

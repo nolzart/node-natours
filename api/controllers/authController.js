@@ -227,10 +227,12 @@ exports.updatePassword = catchAsync(async (req, res, next) => {
         return next(new AppError('Your current password is wrong.', 401));
 
     // If so, update password
+
     user.password = req.body.password;
     user.passwordConfirm = req.body.passwordConfirm;
     await user.save();
     // User.findByIdAndUpdate wil NOT work as intended!
     // Log user in, send JWT
+    // user.passwordConfirm = undefined;
     createSendToken(user, 200, req, res);
 });

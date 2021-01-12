@@ -5,7 +5,27 @@ import {
     LOGOUT_USER,
     GET_REFRESH_TOKEN,
     REFRESH_TOKEN,
+    UPDATE_USER_DATA,
+    UPDATE_USER_PASSWORD,
 } from '../types/authTypes';
+
+export const updateUserData = data => async dispatch => {
+    try {
+        const res = await axios.patch('/api/v1/users/updateMe', data);
+        dispatch({ type: UPDATE_USER_DATA, payload: res.data.data });
+    } catch (err) {
+        console.log(err);
+    }
+};
+
+export const updateUserPassword = data => async dispatch => {
+    try {
+        const res = await axios.patch('/api/v1/users/updateMyPassword', data);
+        dispatch({ type: UPDATE_USER_PASSWORD, payload: res.data });
+    } catch (err) {
+        console.log(err);
+    }
+};
 
 export const loginUser = ({ email, password }) => async dispatch => {
     try {

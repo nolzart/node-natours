@@ -1,9 +1,13 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { useForm } from 'react-hook-form';
 
 import ImageUpload from '../../components/ImageUpload';
+import {
+    updateUserData,
+    updateUserPassword,
+} from '../../store/actions/authActions';
 
 const navItem = (link, text, icon, active) => (
     <li className={`${active ? 'side__nav--active' : ''}`}>
@@ -23,23 +27,25 @@ const Account = () => {
     const {
         register: registerPassword,
         handleSubmit: handleSubmitPassword,
+        reset,
     } = useForm();
-    const { user, isAuthenticated, token } = useSelector(state => state.auth);
 
-    const [photo, setPhoto] = useState(`/img/users/${user.photo}`);
-    const onSubmit = async data => {
-        data.photo = data.name !== undefined ? photo : undefined;
-        try {
-            const url =
-                data.name !== undefined
-                    ? 'http://127.0.0.1:5000/api/v1/users/updateMe'
-                    : 'http://127.0.0.1:5000/api/v1/users/updateMyPassword';
-            await axios.patch(url, { data });
-        } catch (err) {
-            console.log(err);
-        }
+    const { user, isAuthenticated } = useSelector(state => state.auth);
+    const dispatch = useDispatch();
+    const [photo, setPhoto] = useState('');
+
+    const submitData = data => {
+        if (photo) data.photo = photo;
+        const form = new FormData();
+        form.append('name', data.name);
+        form.append('email', data.email);
+        form.append('photo', data.photo);
+        dispatch(updateUserData(form));
     };
-
+    const submitPassword = data => {
+        dispatch(updateUserPassword(data));
+        reset();
+    };
     return (
         <main className='main'>
             <div className='user-view'>
@@ -72,7 +78,7 @@ const Account = () => {
                         </h2>
                         <form
                             className='form form-user-data'
-                            onSubmit={handleSubmit(onSubmit)}
+                            onSubmit={handleSubmit(submitData)}
                         >
                             <div className='form__group'>
                                 <label htmlFor='name' className='form__label'>
@@ -102,7 +108,7 @@ const Account = () => {
                             </div>
                             <ImageUpload
                                 name={user.name}
-                                photo={photo}
+                                userPhoto={user.photo}
                                 setPhoto={setPhoto}
                             />
                             <div className='form__group right'>
@@ -121,7 +127,7 @@ const Account = () => {
                         </h2>
                         <form
                             className='form form-user-password'
-                            onSubmit={handleSubmitPassword(onSubmit)}
+                            onSubmit={handleSubmitPassword(submitPassword)}
                         >
                             <div className='form__group'>
                                 <label
