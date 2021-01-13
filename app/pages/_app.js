@@ -5,6 +5,7 @@ import { PersistGate } from 'redux-persist/integration/react';
 
 import Layout from '../components/Layout/Layout';
 import { wrapper } from '../store/store';
+import Alert from '../components/Alert';
 import { refreshToken } from '../store/actions/authActions';
 import setAuthorizationToken from '../utils/setAuthorizationToken';
 
@@ -20,6 +21,7 @@ const MyApp = props => {
         <PersistGate persistor={store.__persistor} loading={<div>Loading</div>}>
             {!loadingUser ? (
                 <Layout>
+                    <Alert />
                     <Component {...pageProps} />
                 </Layout>
             ) : null}

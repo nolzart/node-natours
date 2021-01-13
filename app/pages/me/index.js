@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import axios from 'axios';
 import { useSelector, useDispatch } from 'react-redux';
 import { useForm } from 'react-hook-form';
 
 import ImageUpload from '../../components/ImageUpload';
+import Alert from '../../components/Alert';
 import {
     updateUserData,
     updateUserPassword,

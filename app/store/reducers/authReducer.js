@@ -1,6 +1,5 @@
 import {
     LOGIN_USER,
-    LOGIN_USER_ERROR,
     LOGOUT_USER,
     GET_REFRESH_TOKEN,
     REFRESH_TOKEN,
@@ -35,14 +34,6 @@ const authReducer = (state = initialState, action) => {
             };
         case LOGOUT_USER:
             return initialState;
-        case LOGIN_USER_ERROR:
-            return {
-                isAuthenticated: false,
-                user: {},
-                token: '',
-                loading: false,
-                err: action.payload,
-            };
         case UPDATE_USER_DATA:
             return {
                 ...state,

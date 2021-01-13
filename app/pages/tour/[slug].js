@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 // import axios from 'axios';
 
 import { MapBox } from '../../components/mapboxgl';
-import { getSingleTour } from '../../store/actions/tourActions';
+import { getTour } from '../../store/actions/tourActions';
 import { wrapper } from '../../store/store';
 
 const DetailItem = ({ useTag, classContainer, classSvg, children }) => (
@@ -36,8 +36,7 @@ const DetailItem = ({ useTag, classContainer, classSvg, children }) => (
 // };
 
 export const getServerSideProps = wrapper.getServerSideProps(
-    async ({ store, params }) =>
-        await store.dispatch(getSingleTour(params.slug))
+    async ({ store, params }) => await store.dispatch(getTour(params.slug))
 );
 
 const TourDetails = () => {
@@ -45,9 +44,7 @@ const TourDetails = () => {
     const dispatch = useDispatch();
     const router = useRouter();
     const { slug } = router.query;
-    const getTour = useCallback(slug => dispatch(getSingleTour(slug)), [
-        dispatch,
-    ]);
+    const getTour = useCallback(slug => dispatch(getTour(slug)), [dispatch]);
 
     useEffect(() => {
         document.title = `Tour | ${slug}`;
