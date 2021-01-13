@@ -14,7 +14,7 @@ const Alert = () => {
         }, 5000);
         return () => clearTimeout(timer);
     }, [message, status]);
-    return show && <div class={`alert alert--${status}`}>{message}</div>;
+    return show && <div className={`alert alert--${status}`}>{message}</div>;
 };
 
 export default Alert;

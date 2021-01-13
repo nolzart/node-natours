@@ -1,5 +1,5 @@
 import axios from 'axios';
-import catchAsyncError from '../../utils/catchAsyncError';
+
 import {
     LOGIN_USER,
     LOGOUT_USER,
@@ -9,6 +9,7 @@ import {
     UPDATE_USER_PASSWORD,
 } from '../types/authTypes';
 import { UPDATE_ALERT } from '../types/alertTypes';
+import catchAsyncError from '../../utils/catchAsyncError';
 
 export const updateUserData = data => async dispatch =>
     catchAsyncError(async () => {
@@ -65,10 +66,10 @@ export const logoutUser = () => async dispatch =>
     }, dispatch);
 
 export const refreshToken = () => async dispatch => {
-    dispatch({
-        type: GET_REFRESH_TOKEN,
-    });
     catchAsyncError(async () => {
+        dispatch({
+            type: GET_REFRESH_TOKEN,
+        });
         const res = await axios.get('/api/v1/users/refreshToken');
         dispatch({
             type: REFRESH_TOKEN,
