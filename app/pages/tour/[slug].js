@@ -8,6 +8,7 @@ import { MapBox } from '../../components/mapboxgl';
 import * as tourActions from '../../store/actions/tourActions';
 import { wrapper } from '../../store/store';
 import { getStripe, getCheckoutSession } from '../../utils/stripe';
+import Loader from '../../components/Loader';
 
 const DetailItem = ({ useTag, classContainer, classSvg, children }) => (
     <div className={classContainer}>
@@ -42,7 +43,7 @@ const TourDetails = () => {
     }, [slug, getTour]);
 
     return Object.entries(tour).length === 0 ? (
-        <p>Loading...</p>
+        <Loader />
     ) : (
         <>
             <section className='section-header'>

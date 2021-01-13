@@ -1,0 +1,36 @@
+.lds {
+    &-ring {
+        display: inline-block;
+        position: relative;
+        width: calc(100% - 3rem);
+        height: 100vh;
+
+        div {
+            box-sizing: border-box;
+            display: block;
+            position: absolute;
+            top: 40%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 64px;
+            height: 64px;
+            margin: 8px;
+            border: 8px solid $color-primary;
+            border-radius: 50%;
+            animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+            border-color: $color-primary transparent transparent transparent;
+
+            &:nth-child(1) {
+                animation-delay: -0.45s;
+            }
+
+            &:nth-child(2) {
+                animation-delay: -0.3s;
+            }
+
+            &:nth-child(3) {
+                animation-delay: -0.15s;
+            }
+        }
+    }
+}

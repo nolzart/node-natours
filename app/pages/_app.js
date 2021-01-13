@@ -6,8 +6,11 @@ import { PersistGate } from 'redux-persist/integration/react';
 import Layout from '../components/Layout/Layout';
 import { wrapper } from '../store/store';
 import Alert from '../components/Alert';
+import Loader from '../components/Loader';
 import { refreshToken } from '../store/actions/authActions';
 import setAuthorizationToken from '../utils/setAuthorizationToken';
+
+import '../styles/main.scss';
 
 //withRedux wrapper that passes the store to the App Component
 const MyApp = props => {
@@ -18,13 +21,15 @@ const MyApp = props => {
     useEffect(() => store.dispatch(refreshToken()), []);
     useEffect(() => setAuthorizationToken(token), [token]);
     return (
-        <PersistGate persistor={store.__persistor} loading={<div>Loading</div>}>
+        <PersistGate persistor={store.__persistor} loading={null}>
             {!loadingUser ? (
                 <Layout>
                     <Alert />
                     <Component {...pageProps} />
                 </Layout>
-            ) : null}
+            ) : (
+                <Loader />
+            )}
         </PersistGate>
     );
 };

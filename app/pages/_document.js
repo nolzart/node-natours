@@ -23,7 +23,7 @@ class MyDocument extends Document {
                         href='https://fonts.googleapis.com/css?family=Lato:300,300i,700'
                         rel='stylesheet'
                     />
-                    <link href='styles.css' rel='stylesheet' />
+                    {/* <link href='styles.css' rel='stylesheet' /> */}
                     <script src='https://js.stripe.com/v3/' />
                 </Head>
                 <body>
