@@ -1,4 +1,5 @@
 import React, { useEffect, useCallback } from 'react';
+import Link from 'next/link';
 import { useSelector, useDispatch } from 'react-redux';
 import { useRouter } from 'next/router';
 // import axios from 'axios';
@@ -6,6 +7,7 @@ import { useRouter } from 'next/router';
 import { MapBox } from '../../components/mapboxgl';
 import * as tourActions from '../../store/actions/tourActions';
 import { wrapper } from '../../store/store';
+import { getStripe, getCheckoutSession } from '../../utils/stripe';
 
 const DetailItem = ({ useTag, classContainer, classSvg, children }) => (
     <div className={classContainer}>
@@ -17,32 +19,16 @@ const DetailItem = ({ useTag, classContainer, classSvg, children }) => (
     </div>
 );
 
-// const stripe = window.Stripe(
-//     'pk_test_51HnrF2KyEVMDo9Wn6KEslURceFslGebjrSODFs03WIqCuwsZeVKKZ3OWtR3wpnyzZnqFLdlc6jImGCPdVppmF6ON00NAZU5OLi'
-// );
-
-// const getCheckoutSession = async tourId => {
-//     try {
-//         const session = await axios.get(
-//             `https://mern-natours.herokuapp.com/api/v1/bookings/checkout-session/${tourId}`
-//         );
-//         await stripe.redirectToCheckout({
-//             sessionId: session.data.session.id,
-//         });
-//     } catch (error) {
-//         console.log(error);
-//         // showAlert('error', 'Something was wrong!');
-//     }
-// };
-
 export const getServerSideProps = wrapper.getServerSideProps(
     async ({ store, params }) =>
         await store.dispatch(tourActions.getTour(params.slug))
 );
 
 const TourDetails = () => {
-    const tour = useSelector(state => state.tour.tour);
+    const { tour } = useSelector(state => state.tour);
+    const { isAuthenticated } = useSelector(state => state.auth);
     const dispatch = useDispatch();
+    const stripe = getStripe();
     const router = useRouter();
     const { slug } = router.query;
 
@@ -261,16 +247,25 @@ const TourDetails = () => {
                             WHAT ARE YOU WAITING FOR?
                         </h2>
                         <p className='cta__text'>{`${tour.duration} days. 1 adventure. Infinite memories. Make it yours today!`}</p>
-                        <button
-                            className='btn btn--green span-all-rows'
-                            id='book-tour'
-                            type='button'
-                            data-tour-id={`${tour.id}`}
-                            onClick={() => console.log(tour.id)}
-                        >
-                            Book tour now!
-                        </button>
-                        {/* a.btn.btn--green.span-all-rows(href='/login') Log in to book a tour! */}
+                        {isAuthenticated ? (
+                            <button
+                                className='btn btn--green span-all-rows'
+                                id='book-tour'
+                                type='button'
+                                data-tour-id={`${tour.id}`}
+                                onClick={() =>
+                                    getCheckoutSession(tour.id, stripe)
+                                }
+                            >
+                                Book tour now!
+                            </button>
+                        ) : (
+                            <Link href='Login'>
+                                <a className='btn btn--green span-all-rows'>
+                                    Log in to book a tour!
+                                </a>
+                            </Link>
+                        )}
                     </div>
                 </div>
             </section>
