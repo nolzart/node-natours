@@ -61,4 +61,9 @@
             justify-self: center;
         }
     }
+
+    @include respond(tab-land) {
+        font-size: $default-font-size;
+        grid-column-gap: 5 rem;
+    }
 }

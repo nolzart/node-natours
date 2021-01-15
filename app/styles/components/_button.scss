@@ -119,4 +119,22 @@
             outline-offset: 3px;
         }
     }
+
+    @include respond(tab-land) {
+        &,
+        &:link,
+        &:visited {
+            font-size: 1.8rem;
+            padding: 1.6rem 4rem;
+        }
+
+        &--small {
+            &,
+            &:link,
+            &:visited {
+                font-size: 1.6rem !important;
+                padding: 1.25rem 5rem !important;
+            }
+        }
+    }
 }

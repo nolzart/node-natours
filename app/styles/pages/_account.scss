@@ -24,9 +24,15 @@
         );
         background-image: linear-gradient(
             to right bottom,
-            $color-primary-light $color-primary-dark
+            $color-primary-light,
+            $color-primary-dark
         );
         padding: 4rem 0;
+
+        @include respond(tab-land) {
+            -webkit-box-flex: 28rem;
+            flex: 28rem 0 0;
+        }
     }
     &__content {
         -webkit-box-flex: 1;

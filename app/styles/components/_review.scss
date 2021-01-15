@@ -1,13 +1,11 @@
 .reviews {
-    & {
-        padding: 5rem 0;
-        display: grid;
-        grid-column-gap: 6rem;
-        grid-auto-flow: column;
-        overflow-x: scroll;
-        -ms-scroll-snap-type: x mandatory;
-        scroll-snap-type: x mandatory;
-    }
+    padding: 5rem 0;
+    display: grid;
+    grid-column-gap: 6rem;
+    grid-auto-flow: column;
+    overflow-x: scroll;
+    -ms-scroll-snap-type: x mandatory;
+    scroll-snap-type: x mandatory;
 
     &__card {
         width: 30rem;
@@ -79,6 +77,32 @@
 
         &--inactive {
             fill: #bbb;
+        }
+    }
+
+    @include respond(tab-land) {
+        &__card {
+            width: 40rem;
+            height: 30rem;
+        }
+
+        &__avatar {
+            &-img {
+                height: 6rem;
+            }
+        }
+
+        &__user {
+            font-size: 2rem;
+        }
+
+        &__text {
+            font-size: 1.8rem;
+        }
+
+        &__star {
+            height: 3rem;
+            width: 3rem;
         }
     }
 }

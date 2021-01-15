@@ -54,11 +54,34 @@
         height: 3.5rem;
         margin-right: 1.25rem;
     }
+
+    @include respond(tab-land) {
+        &__detail {
+            font-size: 1.8rem;
+        }
+
+        &__icon {
+            height: 3rem;
+            width: 3rem;
+        }
+
+        &__label {
+            font-size: 1.8rem;
+        }
+
+        &__img {
+            height: 4.5rem;
+        }
+    }
 }
 
 .section-header {
     position: relative;
     height: 38vw;
+
+    @include respond(tab-land) {
+        height: 40vw;
+    }
     clip-path: polygon(
         0 0,
         100% 0,
@@ -138,6 +161,10 @@
 
     & .description__text {
         font-size: 1.7rem;
+
+        @include respond(tab-land) {
+            font-size: 1.9rem;
+        }
     }
 
     & .description__text:not(:last-child) {

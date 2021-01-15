@@ -14,22 +14,9 @@
     -ms-flex-align: center;
     align-items: center;
 
-    @media only screen and (max-width: 62.5em) {
-        -webkit-box-orient: vertical;
-        -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-        flex-direction: column;
-    }
-
     &__logo {
         img {
             height: 3.5rem;
-        }
-        @media only screen and (max-width: 62.5em) {
-            -webkit-box-ordinal-group: 0;
-            -ms-flex-order: -1;
-            order: -1;
-            margin-bottom: 1.5rem;
         }
     }
 
@@ -61,6 +48,15 @@
                 $color-primary-dark
             );
             opacity: 0.85;
+        }
+    }
+
+    @include respond(tab-land) {
+        height: 8em;
+        &__logo {
+            img {
+                height: 4rem;
+            }
         }
     }
 }

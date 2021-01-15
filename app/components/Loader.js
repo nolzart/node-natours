@@ -7,7 +7,7 @@ const Loader = () => {
             document.querySelector('body').classList.remove('ov-hidden');
     });
     return (
-        <div class='lds-ring'>
+        <div className='lds-ring'>
             <div></div>
             <div></div>
             <div></div>
