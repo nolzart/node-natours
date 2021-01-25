@@ -59,4 +59,68 @@
             }
         }
     }
+
+    @include respond(tab-port) {
+        display: grid;
+        grid-template-areas:
+            'logo logo'
+            'tours tours'
+            'user user';
+        grid-template-columns: auto;
+        grid-template-rows: auto;
+        height: auto;
+
+        .nav--tours {
+            grid-area: tours;
+        }
+        .header__logo {
+            grid-area: logo;
+            margin: 3rem 0 1rem 0;
+            cursor: pointer;
+        }
+        .nav--user {
+            grid-area: user;
+        }
+
+        .nav--tours,
+        .nav--user {
+            opacity: 0;
+            pointer-events: none;
+            width: 0;
+            height: 0;
+            transition: 0.1s ease;
+
+            & > * {
+                display: none;
+            }
+        }
+
+        #nav__checkbox:checked ~ .nav--tours,
+        #nav__checkbox:checked ~ .nav--user {
+            opacity: 1;
+            pointer-events: auto;
+            width: auto;
+            height: auto;
+        }
+
+        #nav__checkbox:checked ~ .nav--tours {
+            margin-bottom: 1rem;
+            & > * {
+                display: block;
+            }
+        }
+
+        #nav__checkbox:checked ~ .nav--user > * {
+            margin: 1rem 0;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+    }
+
+    @include respond(phone) {
+        .header__logo {
+            margin: 2rem 0 1rem 0;
+        }
+    }
 }

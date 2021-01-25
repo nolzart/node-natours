@@ -8,12 +8,13 @@ export const Map = ReactMapboxGl({
 });
 
 export const MapBox = ({ tour }) => {
+    const bounds = tour.locations.map(loc => loc.coordinates);
     return (
         <Map
             // eslint-disable-next-line react/style-prop-object
             style='mapbox://styles/nolzart/ckharx96i0cn519oba4bgxy6t'
             scrollZoom={false}
-            fitBounds={tour.locations.map(loc => loc.coordinates)}
+            fitBounds={bounds}
             fitBoundsOptions={{
                 padding: {
                     top: 200,

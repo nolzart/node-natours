@@ -11,6 +11,7 @@
         -webkit-box-direction: normal;
         -ms-flex-direction: column;
         flex-direction: column;
+        align-items: flex-start;
     }
 
     &--tours {
@@ -103,12 +104,12 @@
         -ms-flex-align: center;
         align-items: center;
 
-        @include respond(phone) {
-            -webkit-box-ordinal-group: 0;
-            -ms-flex-order: -1;
-            order: -1;
-            margin-bottom: 1.2rem;
-        }
+        // @include respond(phone) {
+        //     -webkit-box-ordinal-group: 0;
+        //     -ms-flex-order: -1;
+        //     order: -1;
+        //     margin-bottom: 1.2rem;
+        // }
 
         &-btn {
             background: none;

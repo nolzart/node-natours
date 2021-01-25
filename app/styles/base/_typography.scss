@@ -4,6 +4,10 @@ body {
     font-family: 'Lato', sans-serif;
     color: $color-gray-dark;
     padding: 3rem;
+
+    @include respond(tab-port) {
+        padding: 0;
+    }
 }
 
 .heading-secondary {
@@ -73,6 +77,16 @@ body {
 
     @include respond(tab-land) {
         width: 45%;
+    }
+
+    @include respond(tab-port) {
+        width: 40%;
+        font-size: 3.75rem;
+    }
+
+    @include respond(phone) {
+        width: 45%;
+        font-size: 3rem;
     }
 }
 

@@ -137,4 +137,15 @@
             }
         }
     }
+
+    @include respond(tab-port) {
+        &--small {
+            &,
+            &:link,
+            &:visited {
+                font-size: 1.8rem !important;
+                padding: 1.25rem 6rem !important;
+            }
+        }
+    }
 }

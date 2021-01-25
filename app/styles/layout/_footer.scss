@@ -9,10 +9,19 @@
     -ms-flex-pack: justify;
     justify-content: space-between;
 
+    @include respond(tab-land) {
+        font-size: $default-font-size;
+        grid-column-gap: 5 rem;
+    }
+
     @include respond(tab-port) {
         grid-template-columns: 1fr;
         grid-row-gap: 1.25rem;
         justify-items: center;
+    }
+
+    @include respond(phone) {
+        grid-row-gap: 0;
     }
 
     &__logo {
@@ -51,6 +60,12 @@
         a:active {
             color: $color-primary;
         }
+
+        @include respond(phone) {
+            display: block;
+            font-size: 1.8rem;
+            text-align: center;
+        }
     }
 
     &__copyright {
@@ -60,10 +75,9 @@
         @include respond(tab-port) {
             justify-self: center;
         }
-    }
 
-    @include respond(tab-land) {
-        font-size: $default-font-size;
-        grid-column-gap: 5 rem;
+        @include respond(phone) {
+            text-align: center;
+        }
     }
 }

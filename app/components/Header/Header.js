@@ -9,14 +9,22 @@ const Header = () => {
     const { user, isAuthenticated } = useSelector(state => state.auth);
     return (
         <header className='header'>
+            <input
+                type='checkbox'
+                name='nav__checkbox'
+                id='nav__checkbox'
+                className='nav__checkbox'
+            />
             <nav className='nav nav--tours'>
                 <Link href='/'>
                     <a className='nav__el'>All tours</a>
                 </Link>
             </nav>
-            <div className='header__logo'>
-                <img src='/img/logo-white.png' alt='Natours logo' />
-            </div>
+            <label htmlFor='nav__checkbox'>
+                <div className='header__logo'>
+                    <img src='/img/logo-white.png' alt='Natours logo' />
+                </div>
+            </label>
             <nav className='nav nav--user'>
                 {isAuthenticated ? (
                     <>

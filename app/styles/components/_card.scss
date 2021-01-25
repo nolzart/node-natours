@@ -178,4 +178,43 @@
             }
         }
     }
+
+    @include respond(tab-port) {
+        &-container {
+            max-width: 70%;
+            grid-template-columns: 1fr;
+        }
+
+        &__text {
+            font-size: 2.5rem;
+        }
+
+        &__data {
+            font-size: 2rem;
+        }
+
+        &__sub-heading {
+            font-size: 1.8rem;
+        }
+
+        &__picture {
+            height: 40rem;
+        }
+
+        &__footer {
+            padding: 1.5rem 3rem;
+            font-size: 1.8rem;
+        }
+    }
+
+    @include respond(phone) {
+        &-container {
+            max-width: 90%;
+            grid-template-columns: 1fr;
+            grid-gap: 6rem;
+        }
+        &__picture {
+            height: 30rem;
+        }
+    }
 }
