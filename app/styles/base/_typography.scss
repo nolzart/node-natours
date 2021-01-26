@@ -64,6 +64,11 @@ body {
         font-size: 6rem;
         width: 80%;
     }
+
+    @include respond(phone) {
+        font-size: 4.5rem;
+        width: 100%;
+    }
 }
 
 .heading-tertiary {
@@ -162,6 +167,10 @@ body {
         @include respond(tab-land) {
             font-size: 1.8rem;
         }
+
+        @include respond(phone) {
+            font-size: 1.5rem;
+        }
     }
 
     &__icon {
@@ -174,6 +183,11 @@ body {
         @include respond(tab-land) {
             height: 2.5rem;
             width: 2.5rem;
+        }
+
+        @include respond(phone) {
+            height: 2rem;
+            width: 2rem;
         }
     }
 }

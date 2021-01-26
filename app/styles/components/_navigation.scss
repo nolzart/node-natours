@@ -14,6 +14,10 @@
         align-items: flex-start;
     }
 
+    &__checkbox {
+        display: none;
+    }
+
     &--tours {
         -webkit-box-flex: 0;
         -ms-flex: 0 1 40%;

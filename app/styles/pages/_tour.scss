@@ -1,13 +1,11 @@
 .overview-box {
-    & {
-        background-color: $color-white-2;
-        display: -webkit-box;
-        display: -ms-flexbox;
-        display: flex;
-        -webkit-box-pack: center;
-        -ms-flex-pack: center;
-        justify-content: center;
-    }
+    background-color: $color-white-2;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
 
     &__group:not(:last-child) {
         margin-bottom: 7rem;
@@ -73,6 +71,32 @@
             height: 4.5rem;
         }
     }
+
+    @include respond(phone) {
+        margin-top: 2rem;
+
+        & > div {
+            display: flex;
+        }
+
+        &__group {
+            margin: 0 1.5rem;
+
+            &:not(:last-child) {
+                margin-bottom: 0;
+            }
+        }
+    }
+
+    @media screen and (max-width: 25em) {
+        & > div {
+            display: block;
+        }
+
+        &__group:not(:last-child) {
+            margin-bottom: 7rem;
+        }
+    }
 }
 
 .section-header {
@@ -82,6 +106,19 @@
     @include respond(tab-land) {
         height: 40vw;
     }
+
+    @include respond(tab-port) {
+        height: 45vw;
+    }
+
+    @include respond(phone) {
+        height: 50vw;
+    }
+
+    @media screen and (max-width: 25em) {
+        height: 60vw;
+    }
+
     clip-path: polygon(
         0 0,
         100% 0,
@@ -115,16 +152,18 @@
     margin-top: calc(0px - #{$section-rotate});
     position: relative;
     z-index: 1000;
+
+    @include respond(tab-port) {
+        flex-direction: column;
+    }
 }
 
 .picture-box__img {
-    & {
-        display: block;
-        width: 100%;
-        height: 110%;
-        -o-object-fit: cover;
-        object-fit: cover;
-    }
+    display: block;
+    width: 100%;
+    height: 110%;
+    -o-object-fit: cover;
+    object-fit: cover;
 
     &--1 {
         padding-top: 15%;
@@ -134,6 +173,26 @@
     }
     &--3 {
         padding-bottom: 27%;
+    }
+
+    @include respond(tab-port) {
+        clip-path: polygon(
+            0 $section-rotate,
+            100% 0,
+            100% calc(100% - #{$section-rotate}),
+            0 100%
+        );
+        margin-top: calc(0px - #{$section-rotate});
+
+        &--1 {
+            padding-top: 0;
+        }
+        &--2 {
+            padding-bottom: 0;
+        }
+        &--3 {
+            padding-bottom: 0;
+        }
     }
 }
 
@@ -152,6 +211,14 @@
         -ms-flex: 0 0 50%;
         flex: 0 0 50%;
     }
+
+    @include respond(phone) {
+        flex-direction: column;
+    }
+
+    @media screen and (max-width: 25em) {
+        margin-top: calc(0px - 12vw);
+    }
 }
 
 .description-box {
@@ -169,6 +236,10 @@
 
     & .description__text:not(:last-child) {
         margin-bottom: 2rem;
+    }
+
+    @include respond(phone) {
+        margin-bottom: 5rem;
     }
 }
 
@@ -207,6 +278,26 @@
         100% calc(100% - #{$section-rotate}),
         0 100%
     );
+
+    ::-webkit-scrollbar {
+        height: 1rem;
+        width: 4px;
+        border: 1px solid transparent;
+        box-shadow: 0px 1px 3px 3px rgba(0, 0, 0, 0.1);
+    }
+
+    ::-webkit-scrollbar-track {
+        background-color: transparent;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        height: 1rem;
+        width: 1px;
+        border-radius: 10%;
+        background-color: $color-primary-light;
+
+        box-shadow: 0px 1px 5px 5px rgba(0, 0, 0, 0.1);
+    }
 }
 
 .section-cta {
