@@ -2,13 +2,13 @@ import React, { useEffect, useCallback } from 'react';
 import Link from 'next/link';
 import { useSelector, useDispatch } from 'react-redux';
 import { useRouter } from 'next/router';
-// import axios from 'axios';
 
 import { MapBox } from '../../components/mapboxgl';
 import * as tourActions from '../../store/actions/tourActions';
 import { wrapper } from '../../store/store';
-import { getStripe, getCheckoutSession } from '../../utils/stripe';
+// import { getStripe, getCheckoutSession } from '../../utils/stripe';
 import Loader from '../../components/Loader';
+import BookTourButton from '../../components/BookTourButton';
 
 const DetailItem = ({ useTag, classContainer, classSvg, children }) => (
     <div className={classContainer}>
@@ -29,7 +29,7 @@ const TourDetails = () => {
     const { tour } = useSelector(state => state.tour);
     const { isAuthenticated } = useSelector(state => state.auth);
     const dispatch = useDispatch();
-    const stripe = getStripe();
+    // const stripe = getStripe();
     const router = useRouter();
     const { slug } = router.query;
 
@@ -249,18 +249,20 @@ const TourDetails = () => {
                         </h2>
                         <p className='cta__text'>{`${tour.duration} days. 1 adventure. Infinite memories. Make it yours today!`}</p>
                         {isAuthenticated ? (
-                            <button
-                                className='btn btn--green span-all-rows'
-                                id='book-tour'
-                                type='button'
-                                data-tour-id={`${tour.id}`}
-                                onClick={() =>
-                                    getCheckoutSession(tour.id, stripe)
-                                }
-                            >
-                                Book tour now!
-                            </button>
+                            <BookTourButton tourId={tour.id} />
                         ) : (
+                            // <button
+                            //     className='btn btn--green span-all-rows'
+                            //     id='book-tour'
+                            //     type='button'
+                            //     data-tour-id={`${tour.id}`}
+                            //     onClick={() =>
+                            //         getCheckoutSession(tour.id, stripe)
+                            //     }
+                            // >
+                            //     Book tour now!
+                            // </button>
+
                             <Link href='Login'>
                                 <a className='btn btn--green span-all-rows'>
                                     Log in to book a tour!
