@@ -12,4 +12,8 @@
 
 .right {
     text-align: right !important;
+
+    @include respond(phone) {
+        text-align: center !important;
+    }
 }

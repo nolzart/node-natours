@@ -49,6 +49,15 @@ const Account = () => {
     return (
         <main className='main'>
             <div className='user-view'>
+                <input
+                    type='checkbox'
+                    name='navi-toggle'
+                    id='navi-toggle'
+                    className='nav__checkbox'
+                />
+                <label htmlFor='navi-toggle' className='nav__button'>
+                    <span className='nav__icon'></span>
+                </label>
                 <nav className='user-view__menu'>
                     <ul className='side-nav'>
                         {navItem('#', 'Settings', 'settings', true)}

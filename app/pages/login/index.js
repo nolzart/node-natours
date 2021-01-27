@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { useDispatch } from 'react-redux';
 
 import { loginUser } from '../../store/actions/authActions';
 
 const Login = () => {
+    useEffect(() => (document.title = 'Log into your account'), []);
     const dispatch = useDispatch();
     const router = useRouter();
     const [inputValues, setInputValues] = useState({

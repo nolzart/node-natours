@@ -14,10 +14,6 @@
         align-items: flex-start;
     }
 
-    &__checkbox {
-        display: none;
-    }
-
     &--tours {
         -webkit-box-flex: 0;
         -ms-flex: 0 1 40%;
@@ -176,6 +172,11 @@
         margin-right: 1rem;
     }
 
+    &__checkbox,
+    &__button {
+        display: none;
+    }
+
     @include respond(tab-land) {
         &__user-img {
             height: 4rem;
@@ -188,6 +189,73 @@
             &:visited {
                 font-size: 1.8rem;
             }
+        }
+    }
+
+    @include respond(tab-port) {
+        &__button {
+            height: 6rem;
+            width: 6rem;
+            border-radius: 50%;
+            background-color: $color-white;
+            display: block;
+            position: absolute;
+            top: 5%;
+            right: 2%;
+            z-index: 2000;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        &__icon {
+            position: relative;
+            margin-top: 3rem;
+
+            &,
+            &:before,
+            &:after {
+                width: 3rem;
+                height: 2px;
+                background-color: $color-gray-dark;
+                display: inline-block;
+                transition: 0.1s ease;
+            }
+
+            &:before,
+            &:after {
+                content: '';
+                position: absolute;
+                left: 0;
+            }
+
+            &:before {
+                top: -0.5rem;
+            }
+            &:after {
+                top: 0.5rem;
+            }
+        }
+
+        &__button:hover &__icon:before {
+            top: -1rem;
+        }
+
+        &__button:hover &__icon:after {
+            top: 1rem;
+        }
+
+        &__checkbox:checked + &__button &__icon {
+            background-color: transparent;
+        }
+
+        &__checkbox:checked + &__button &__icon::before {
+            top: 0;
+            transform: rotate(135deg);
+        }
+
+        &__checkbox:checked + &__button &__icon::after {
+            top: 0;
+            transform: rotate(-135deg);
         }
     }
 }

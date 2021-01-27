@@ -10,6 +10,7 @@
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
+    position: relative;
 
     &__menu {
         -webkit-box-flex: 32rem;
@@ -28,6 +29,7 @@
             $color-primary-dark
         );
         padding: 4rem 0;
+        transition: 0.2s ease;
 
         @include respond(tab-land) {
             -webkit-box-flex: 28rem;
@@ -39,11 +41,52 @@
         -ms-flex: 1;
         flex: 1;
         padding: 7rem 0;
+        transition: 1.2s ease;
     }
     &__form-container {
         max-width: 68rem;
         margin: 0 auto;
         padding: 0 8rem;
+    }
+
+    @include respond(tab-port) {
+        &__menu {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 0;
+            flex: 0;
+            & > * {
+                display: none;
+            }
+        }
+
+        .side-nav a:link,
+        .side-nav a:active {
+            font-size: 2rem;
+        }
+
+        #navi-toggle:checked ~ &__content {
+            width: 0;
+
+            & > * {
+                display: none;
+            }
+        }
+
+        #navi-toggle:checked ~ &__menu {
+            flex: 100%;
+
+            & > * {
+                display: block;
+            }
+        }
+    }
+
+    @include respond(phone) {
+        & > * {
+            text-align: center;
+        }
     }
 }
 
