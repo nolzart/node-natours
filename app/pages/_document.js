@@ -23,8 +23,9 @@ class MyDocument extends Document {
                         href='https://fonts.googleapis.com/css?family=Lato:300,300i,700'
                         rel='stylesheet'
                     />
-                    {/* <link href='styles.css' rel='stylesheet' /> */}
+                    <script src='https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.js' />
                     <script src='https://js.stripe.com/v3/' />
+                    {/* <link href='styles.css' rel='stylesheet' /> */}
                 </Head>
                 <body>
                     <Main />
