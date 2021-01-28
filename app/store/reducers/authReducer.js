@@ -1,4 +1,5 @@
 import {
+    SIGNUP_USER,
     LOGIN_USER,
     LOGOUT_USER,
     GET_REFRESH_TOKEN,
@@ -22,6 +23,7 @@ const authReducer = (state = initialState, action) => {
                 ...state,
                 loading: true,
             };
+        case SIGNUP_USER:
         case LOGIN_USER:
         case REFRESH_TOKEN:
         case UPDATE_USER_PASSWORD:

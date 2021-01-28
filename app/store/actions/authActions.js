@@ -1,6 +1,7 @@
 import axios from 'axios';
 
 import {
+    SIGNUP_USER,
     LOGIN_USER,
     LOGOUT_USER,
     GET_REFRESH_TOKEN,
@@ -8,6 +9,7 @@ import {
     UPDATE_USER_DATA,
     UPDATE_USER_PASSWORD,
 } from '../types/authTypes';
+
 import { UPDATE_ALERT } from '../types/alertTypes';
 import catchAsyncError from '../../utils/catchAsyncError';
 
@@ -37,6 +39,38 @@ export const updateUserPassword = data => async dispatch =>
         });
     }, dispatch);
 
+export const signupUser = ({
+    name,
+    email,
+    password,
+    passwordConfirm,
+}) => async dispatch => {
+    catchAsyncError(async () => {
+        const res = await axios.post(
+            '/api/v1/users/signup',
+            {
+                name,
+                email,
+                password,
+                passwordConfirm,
+            },
+            {
+                headers: {
+                    withCredentials: true,
+                },
+            }
+        );
+        dispatch({
+            type: UPDATE_ALERT,
+            payload: { status: 'success', message: 'Signup successfully!' },
+        });
+        dispatch({
+            type: SIGNUP_USER,
+            payload: res.data,
+        });
+    }, dispatch);
+};
+
 export const loginUser = ({ email, password }) => async dispatch =>
     catchAsyncError(async () => {
         const res = await axios.post(
@@ -52,6 +86,10 @@ export const loginUser = ({ email, password }) => async dispatch =>
             }
         );
         dispatch({
+            type: UPDATE_ALERT,
+            payload: { status: 'success', message: 'Log in successfully!' },
+        });
+        dispatch({
             type: LOGIN_USER,
             payload: res.data,
         });
@@ -66,7 +104,7 @@ export const logoutUser = () => async dispatch =>
     }, dispatch);
 
 export const refreshToken = () => async dispatch => {
-    catchAsyncError(async () => {
+    try {
         dispatch({
             type: GET_REFRESH_TOKEN,
         });
@@ -75,5 +113,15 @@ export const refreshToken = () => async dispatch => {
             type: REFRESH_TOKEN,
             payload: res.data,
         });
-    }, dispatch);
+    } catch (err) {
+        dispatch({
+            type: REFRESH_TOKEN,
+            payload: {
+                token: '',
+                data: {
+                    user: {},
+                },
+            },
+        });
+    }
 };
