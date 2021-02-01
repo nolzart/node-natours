@@ -13,13 +13,14 @@ import setAuthorizationToken from '../utils/setAuthorizationToken';
 import '../styles/main.scss';
 
 //withRedux wrapper that passes the store to the App Component
-const MyApp = props => {
-    const { Component, pageProps } = props;
+const MyApp = ({ Component, pageProps }) => {
     const store = useStore();
     const { loading: loadingUser, token } = useSelector(state => state.auth);
-
+    // Check if the user is authenticated.
     useEffect(() => store.dispatch(refreshToken()), []);
+    // Set axios object authorization header
     useEffect(() => setAuthorizationToken(token), [token]);
+
     return (
         <PersistGate persistor={store.__persistor} loading={null}>
             {!loadingUser ? (
@@ -34,7 +35,11 @@ const MyApp = props => {
     );
 };
 
-// MyApp.getInitialProps = async ({ store }) =>
-//     await store.dispatch(refreshToken());
+MyApp.getInitialProps = async ({ Component, ctx }) => {
+    const pageProps = Component.getInitialProps
+        ? await Component.getInitialProps(ctx)
+        : {};
+    return { pageProps };
+};
 
 export default wrapper.withRedux(MyApp);

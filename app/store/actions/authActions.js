@@ -45,21 +45,13 @@ export const signupUser = ({
     password,
     passwordConfirm,
 }) => async dispatch => {
-    catchAsyncError(async () => {
-        const res = await axios.post(
-            '/api/v1/users/signup',
-            {
-                name,
-                email,
-                password,
-                passwordConfirm,
-            },
-            {
-                headers: {
-                    withCredentials: true,
-                },
-            }
-        );
+    try {
+        const res = await axios.post('/api/v1/users/signup', {
+            name,
+            email,
+            password,
+            passwordConfirm,
+        });
         dispatch({
             type: UPDATE_ALERT,
             payload: { status: 'success', message: 'Signup successfully!' },
@@ -68,7 +60,15 @@ export const signupUser = ({
             type: SIGNUP_USER,
             payload: res.data,
         });
-    }, dispatch);
+    } catch (err) {
+        const message = err.response
+            ? err.response.data.message
+            : 'Something went wrong!';
+        dispatch({
+            type: UPDATE_ALERT,
+            payload: { status: 'error', message },
+        });
+    }
 };
 
 export const loginUser = ({ email, password }) => async dispatch =>

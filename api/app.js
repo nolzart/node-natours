@@ -50,7 +50,7 @@ const limiter = rateLimit({
     message: 'Too many requests from this IP, please try again in 30m',
 });
 
-app.use('/api', limiter);
+if (process.env.NODE_ENV !== 'development') app.use('/api', limiter);
 
 app.post(
     '/webhook-checkout',

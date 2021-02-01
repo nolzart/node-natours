@@ -6,8 +6,7 @@ import { createStore, applyMiddleware } from 'redux';
 import rootReducer from './reducers';
 
 const bindMiddleware = middleware => {
-    // if (process.env.NODE_ENV !== "production") {
-    if (true) {
+    if (process.env.NODE_ENV !== 'production') {
         const { composeWithDevTools } = require('redux-devtools-extension');
         return composeWithDevTools(applyMiddleware(...middleware));
     }

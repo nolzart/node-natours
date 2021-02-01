@@ -1,77 +1,75 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
+import { useForm } from 'react-hook-form';
 import { useRouter } from 'next/router';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
+import Redirect from '../../components/Redirect';
 import { loginUser } from '../../store/actions/authActions';
 
 const Login = () => {
     useEffect(() => (document.title = 'Log into your account'), []);
+    const { register, handleSubmit, reset } = useForm();
+    const { isAuthenticated } = useSelector(state => state.auth);
     const dispatch = useDispatch();
     const router = useRouter();
-    const [inputValues, setInputValues] = useState({
-        email: '',
-        password: '',
-    });
 
-    const singin = inputValues => dispatch(loginUser(inputValues));
-
-    const handleChange = e => {
-        const { name, value } = e.target;
-        setInputValues({
-            ...inputValues,
-            [name]: value,
-        });
-    };
-    const handleSubmit = e => {
-        e.preventDefault();
-        singin(inputValues);
+    const onSubmit = data => {
+        dispatch(loginUser(data));
+        reset();
         router.push('/');
     };
 
     return (
-        <main className='main'>
-            <div className='login-form'>
-                <h2 className='heading-secondary ma-bt-lg'>
-                    Log into your account
-                </h2>
-                <form className='form form--login' onSubmit={handleSubmit}>
-                    <div className='form__group'>
-                        <label htmlFor='email' className='form__label'>
-                            Email address
-                        </label>
-                        <input
-                            type='email'
-                            id='email'
-                            name='email'
-                            className='form__input'
-                            value={inputValues.email}
-                            onChange={handleChange}
-                            placeholder='you@example.com'
-                            required
-                        />
-                    </div>
-                    <div className='form__group ma-bt-md'>
-                        <label htmlFor='password' className='form__label'>
-                            Password
-                        </label>
-                        <input
-                            type='password'
-                            id='password'
-                            name='password'
-                            className='form__input'
-                            placeholder='••••••••'
-                            value={inputValues.password}
-                            onChange={handleChange}
-                            minLength='8'
-                            required
-                        />
-                    </div>
-                    <div className='form__group'></div>
-                    <button className='btn btn--green'>Login</button>
-                </form>
-            </div>
-        </main>
+        <Redirect shouldRedirect={isAuthenticated === true} path='/'>
+            <main className='main'>
+                <div className='login-form'>
+                    <h2 className='heading-secondary ma-bt-lg'>
+                        Log into your account
+                    </h2>
+                    <form
+                        className='form form--login'
+                        onSubmit={handleSubmit(onSubmit)}
+                    >
+                        <div className='form__group'>
+                            <label htmlFor='email' className='form__label'>
+                                Email address
+                            </label>
+                            <input
+                                type='email'
+                                id='email'
+                                name='email'
+                                className='form__input'
+                                ref={register({
+                                    required: true,
+                                })}
+                                placeholder='you@example.com'
+                                required
+                            />
+                        </div>
+                        <div className='form__group ma-bt-md'>
+                            <label htmlFor='password' className='form__label'>
+                                Password
+                            </label>
+                            <input
+                                type='password'
+                                id='password'
+                                name='password'
+                                className='form__input'
+                                placeholder='••••••••'
+                                ref={register({
+                                    required: true,
+                                    minLength: 8,
+                                })}
+                                minLength='8'
+                                required
+                            />
+                        </div>
+                        <div className='form__group'></div>
+                        <button className='btn btn--green'>Login</button>
+                    </form>
+                </div>
+            </main>
+        </Redirect>
     );
 };
-
 export default Login;
