@@ -1,11 +1,18 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react';
+import Image from 'next/image';
 
 const Footer = () => {
     return (
         <footer className='footer'>
             <div className='footer__logo'>
-                <img src='/img/logo-green.png' alt='Natours logo' />
+                <Image
+                    src='/img/logo-green.png'
+                    alt='Natours logo'
+                    height={60}
+                    width={300}
+                    priority
+                />
             </div>
             <ul className='footer__nav'>
                 <li>

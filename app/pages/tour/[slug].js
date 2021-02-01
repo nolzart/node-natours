@@ -1,5 +1,6 @@
 import React, { useEffect, useCallback } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { useSelector, useDispatch } from 'react-redux';
 import { useRouter } from 'next/router';
 
@@ -233,7 +234,13 @@ const TourDetails = () => {
             <section className='section-cta'>
                 <div className='cta'>
                     <div className='cta__img cta__img--logo'>
-                        <img src='/img/logo-white.png' alt='Natours logo' />
+                        <Image
+                            src='/img/logo-white.png'
+                            alt='Natours logo'
+                            height={100}
+                            width={195}
+                            priority
+                        />
                     </div>
                     <img
                         src={`/img/tours/${tour.images[1]}`}
