@@ -6,6 +6,8 @@
     overflow-x: scroll;
     -ms-scroll-snap-type: x mandatory;
     scroll-snap-type: x mandatory;
+    scrollbar-width: thin;
+    scrollbar-color: $color-primary-light transparent;
 
     &__card {
         width: 30rem;

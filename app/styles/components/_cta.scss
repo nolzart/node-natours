@@ -24,7 +24,7 @@
         box-shadow: 1rem 0.5rem 3rem $box-shadow-dark;
 
         @include respond(phone) {
-            left: 35%;
+            left: 40%;
             top: 25%;
         }
 
@@ -54,7 +54,6 @@
             z-index: 10;
             -webkit-transform: translate(-35%, -50%);
             transform: translate(-35%, -50%);
-
             img {
                 width: 100%;
             }
