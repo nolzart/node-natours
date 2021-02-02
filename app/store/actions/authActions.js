@@ -11,7 +11,7 @@ import {
 } from '../types/authTypes';
 
 import { UPDATE_ALERT } from '../types/alertTypes';
-import catchAsyncError from '../../utils/catchAsyncError';
+import catchAsyncError from '@/utils/catchAsyncError';
 
 export const updateUserData = data => async dispatch =>
     catchAsyncError(async () => {
@@ -54,7 +54,7 @@ export const signupUser = ({
         });
         dispatch({
             type: UPDATE_ALERT,
-            payload: { status: 'success', message: 'Signup successfully!' },
+            payload: { status: 'success', message: 'Successfully registered!' },
         });
         dispatch({
             type: SIGNUP_USER,
@@ -87,7 +87,7 @@ export const loginUser = ({ email, password }) => async dispatch =>
         );
         dispatch({
             type: UPDATE_ALERT,
-            payload: { status: 'success', message: 'Log in successfully!' },
+            payload: { status: 'success', message: 'Logged in successfully!' },
         });
         dispatch({
             type: LOGIN_USER,

@@ -2,9 +2,9 @@ import Head from 'next/head';
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { wrapper } from '../store/store';
-import Tour from '../components/TourCard';
-import { getTours } from '../store/actions/tourActions';
+import { wrapper } from '@/store/store';
+import Tour from '@/components/templates/TourCard';
+import { getTours } from '@/store/actions/tourActions';
 
 export const getServerSideProps = wrapper.getServerSideProps(
     async ({ store }) => await store.dispatch(getTours())

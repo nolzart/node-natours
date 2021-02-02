@@ -2,7 +2,7 @@ import axios from 'axios';
 
 import { UPDATE_ALERT } from '../types/alertTypes';
 import { GET_ALL_TOURS, GET_TOUR, GET_MY_TOURS } from '../types/tourTypes';
-import catchAsyncError from '../../utils/catchAsyncError';
+import catchAsyncError from '@/utils/catchAsyncError';
 
 export const getTours = () => async dispatch =>
     catchAsyncError(async () => {

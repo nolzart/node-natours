@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router';
 
-import Loader from './Loader';
+import Loader from '../elements/Loader';
 
 const Redirect = ({ shouldRedirect, path, children }) => {
     const router = useRouter();

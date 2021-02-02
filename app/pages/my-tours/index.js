@@ -2,10 +2,10 @@ import Head from 'next/head';
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
-import Redirect from '../../components/Redirect';
-import { wrapper } from '../../store/store';
-import Tour from '../../components/TourCard';
-import { getMyTours } from '../../store/actions/tourActions';
+import Redirect from '@/components/elements/Redirect';
+import Tour from '@/components/templates/TourCard';
+import { wrapper } from '@/store/store';
+import { getMyTours } from '@/store/actions/tourActions';
 
 export const getServerSideProps = wrapper.getServerSideProps(
     async ({ store }) => await store.dispatch(getMyTours())

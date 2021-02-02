@@ -3,12 +3,13 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import Head from 'next/head';
 
-import ImageUpload from '../../components/ImageUpload';
-import Redirect from '../../components/Redirect';
+import ImageUpload from '@/components/elements/ImageUpload';
+import Redirect from '@/components/elements/Redirect';
+
 import {
     updateUserData,
     updateUserPassword,
-} from '../../store/actions/authActions';
+} from '@/store/actions/authActions';
 
 const navItem = (link, text, icon, active) => (
     <li className={`${active ? 'side__nav--active' : ''}`}>

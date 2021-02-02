@@ -1,14 +1,13 @@
-// import App from 'next/app';
 import { useEffect } from 'react';
 import { useStore, useSelector } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 
-import Layout from '../components/Layout/Layout';
-import { wrapper } from '../store/store';
-import Alert from '../components/Alert';
-import Loader from '../components/Loader';
-import { refreshToken } from '../store/actions/authActions';
-import setAuthorizationToken from '../utils/setAuthorizationToken';
+import Layout from '@/components/layouts/Layout';
+import Alert from '@/components/modules/Alert';
+import Loader from '@/components/elements/Loader';
+import setAuthorizationToken from '@/utils/setAuthorizationToken';
+import { refreshToken } from '@/store/actions/authActions';
+import { wrapper } from '@/store/store';
 
 import '../styles/main.scss';
 

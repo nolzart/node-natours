@@ -3,8 +3,8 @@ import { useForm } from 'react-hook-form';
 import { useRouter } from 'next/router';
 import { useDispatch, useSelector } from 'react-redux';
 
-import Redirect from '../../components/Redirect';
-import { loginUser } from '../../store/actions/authActions';
+import Redirect from '@/components/elements/Redirect';
+import { loginUser } from '@/store/actions/authActions';
 
 const Login = () => {
     const { register, handleSubmit, reset } = useForm();

@@ -5,11 +5,11 @@ import { useEffect, useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useRouter } from 'next/router';
 
-import MapboxGl from '../../components/mapboxgl';
-import * as tourActions from '../../store/actions/tourActions';
-import { wrapper } from '../../store/store';
-import { getStripe, getCheckoutSession } from '../../utils/stripe';
-import Loader from '../../components/Loader';
+import MapboxGl from '@/components/modules/mapboxgl';
+import Loader from '@/components/elements/Loader';
+import { getStripe, getCheckoutSession } from '@/utils/stripe';
+import * as tourActions from '@/store/actions/tourActions';
+import { wrapper } from '@/store/store';
 
 const DetailItem = ({ useTag, classContainer, classSvg, children }) => (
     <div className={classContainer}>
