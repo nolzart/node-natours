@@ -1,6 +1,7 @@
-import React, { useEffect, useCallback } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import Head from 'next/head';
+import { useEffect, useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useRouter } from 'next/router';
 
@@ -37,15 +38,15 @@ const TourDetails = () => {
         dispatch,
     ]);
 
-    useEffect(() => {
-        document.title = `Tour | ${slug}`;
-        getTour(slug);
-    }, [slug, getTour]);
+    useEffect(() => getTour(slug), [slug, getTour]);
 
     return Object.entries(tour).length === 0 ? (
         <Loader />
     ) : (
         <>
+            <Head>
+                <title>{`Tour | ${tour.name}`}</title>
+            </Head>
             <section className='section-header'>
                 <div className='header__hero'>
                     <div className='header__hero-overlay'>&nbsp;</div>

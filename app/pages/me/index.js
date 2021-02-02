@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useForm } from 'react-hook-form';
+import Head from 'next/head';
 
 import ImageUpload from '../../components/ImageUpload';
 import Redirect from '../../components/Redirect';
@@ -48,6 +49,9 @@ const Account = () => {
     };
     return (
         <Redirect shouldRedirect={isAuthenticated !== true} path='/login'>
+            <Head>
+                <title>{`Natours | Your account`}</title>
+            </Head>
             <main className='main'>
                 <div className='user-view'>
                     <input

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import Head from 'next/head';
 import { useForm } from 'react-hook-form';
 import { useRouter } from 'next/router';
 import { useDispatch, useSelector } from 'react-redux';
@@ -7,7 +7,6 @@ import Redirect from '../../components/Redirect';
 import { loginUser } from '../../store/actions/authActions';
 
 const Login = () => {
-    useEffect(() => (document.title = 'Log into your account'), []);
     const { register, handleSubmit, reset } = useForm();
     const { isAuthenticated } = useSelector(state => state.auth);
     const dispatch = useDispatch();
@@ -21,6 +20,9 @@ const Login = () => {
 
     return (
         <Redirect shouldRedirect={isAuthenticated === true} path='/'>
+            <Head>
+                <title>{`Natours | Log into your account`}</title>
+            </Head>
             <main className='main'>
                 <div className='login-form'>
                     <h2 className='heading-secondary ma-bt-lg'>

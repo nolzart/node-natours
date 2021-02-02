@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react';
-// import ReactMapboxGl, { Marker, Popup } from 'react-mapbox-gl';
+import { useEffect } from 'react';
+
 import 'mapbox-gl/dist/mapbox-gl.css';
 
 const MapboxGl = ({ locations }) => {

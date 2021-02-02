@@ -1,18 +1,13 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 const ImageUpload = ({ name, setPhoto, userPhoto }) => {
     const [previewPhoto, setPreviewPhoto] = useState();
+
     const handleImageChange = e => {
         e.preventDefault();
         const blobImage = URL.createObjectURL(e.target.files[0]);
         setPhoto(e.target.files[0]);
         setPreviewPhoto(blobImage);
-        // let reader = new FileReader();
-        // let file = e.target.files[0];
-
-        // reader.onloadend = () => setPhoto(reader.result);
-
-        // reader.readAsDataURL(file);
     };
 
     return (
@@ -30,7 +25,6 @@ const ImageUpload = ({ name, setPhoto, userPhoto }) => {
                 name='photo'
                 id='photo'
                 onChange={handleImageChange}
-                // ref={register}
             />
             <label htmlFor='photo'>Choose new photos</label>
         </div>

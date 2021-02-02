@@ -1,4 +1,5 @@
-import React, { useEffect } from 'react';
+import Head from 'next/head';
+import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import Redirect from '../../components/Redirect';
@@ -14,12 +15,12 @@ const MyBookings = () => {
     const { myTours } = useSelector(state => state.tour);
     const { isAuthenticated } = useSelector(state => state.auth);
     const dispatch = useDispatch();
-    useEffect(() => {
-        document.title = 'Natours | My Tours';
-        dispatch(getMyTours());
-    }, [dispatch]);
+    useEffect(() => dispatch(getMyTours()), [dispatch]);
     return (
         <Redirect shouldRedirect={isAuthenticated !== true} path='login'>
+            <Head>
+                <title>{`Natours | My Tours`}</title>
+            </Head>
             <main className='main'>
                 <div className='card-container'>
                     {myTours.length > 0 &&
