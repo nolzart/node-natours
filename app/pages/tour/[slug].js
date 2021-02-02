@@ -10,11 +10,16 @@ import Loader from '@/components/elements/Loader'
 import { getStripe, getCheckoutSession } from '@/utils/stripe'
 import * as tourActions from '@/store/actions/tourActions'
 import { wrapper } from '@/store/store'
+import ReviewCard from '@/components/modules/ReviewCard'
+import Hero from '@/components/modules/Hero'
+import GuideDetails from '@/components/modules/GuideDetails'
 
-const DetailItem = ({ useTag, classContainer, classSvg, children }) => (
+const DetailItem = ({ icon, classContainer, classSvg, children }) => (
     <div className={classContainer}>
         <svg
-            dangerouslySetInnerHTML={{ __html: useTag }}
+            dangerouslySetInnerHTML={{
+                __html: `<use xlink:href="/img/icons.svg#icon-map-${icon}" />`,
+            }}
             className={classSvg}
         />
         {children}
@@ -48,28 +53,21 @@ const TourDetails = () => {
                 <title>{`Tour | ${tour.name}`}</title>
             </Head>
             <section className="section-header">
-                <div className="header__hero">
-                    <div className="header__hero-overlay">&nbsp;</div>
-                    <img
-                        src={`/img/tours/${tour.imageCover}`}
-                        alt={tour.name}
-                        className="header__hero-img"
-                    />
-                </div>
+                <Hero imageCover={tour.imageCover} name={tour.name} />
                 <div className="heading-box">
                     <h1 className="heading-primary">
                         <span>{tour.name}</span>
                     </h1>
                     <div className="heading-box__group">
                         <DetailItem
-                            useTag='<use xlink:href="/img/icons.svg#icon-clock"/>'
+                            icon="clock"
                             classContainer="heading-box__detail"
                             classSvg="heading-box__icon"
                         >
                             <span className="heading-box__text">{`${tour.duration} days`}</span>
                         </DetailItem>
                         <DetailItem
-                            useTag='<use xlink:href="/img/icons.svg#icon-map-pin" />'
+                            icon="map-pin"
                             classContainer="heading-box__detail"
                             classSvg="heading-box__icon"
                         >
@@ -88,7 +86,7 @@ const TourDetails = () => {
                                 Quick facts
                             </h2>
                             <DetailItem
-                                useTag='<use xlink:href="/img/icons.svg#icon-calendar" />'
+                                icon="calendar"
                                 classContainer="overview-box__detail"
                                 classSvg="overview-box__icon"
                             >
@@ -105,7 +103,7 @@ const TourDetails = () => {
                                 </span>
                             </DetailItem>
                             <DetailItem
-                                useTag='<use xlink:href="/img/icons.svg#icon-trending-up" />'
+                                icon="trending-up"
                                 classContainer="overview-box__detail"
                                 classSvg="overview-box__icon"
                             >
@@ -117,7 +115,7 @@ const TourDetails = () => {
                                 </span>
                             </DetailItem>
                             <DetailItem
-                                useTag='<use xlink:href="/img/icons.svg#icon-user" />'
+                                icon="user"
                                 classContainer="overview-box__detail"
                                 classSvg="overview-box__icon"
                             >
@@ -129,7 +127,7 @@ const TourDetails = () => {
                                 </span>
                             </DetailItem>
                             <DetailItem
-                                useTag='<use xlink:href="/img/icons.svg#icon-star" />'
+                                icon="star"
                                 classContainer="overview-box__detail"
                                 classSvg="overview-box__icon"
                             >
@@ -147,24 +145,10 @@ const TourDetails = () => {
                             </h2>
                             {tour.guides &&
                                 tour.guides.map(guide => (
-                                    <div
-                                        className="overview-box__detail"
+                                    <GuideDetails
                                         key={guide.id}
-                                    >
-                                        <img
-                                            src={`/img/users/${guide.photo}`}
-                                            alt={`${guide.role}`}
-                                            className="overview-box__img"
-                                        />
-                                        <span className="overview-box__label">
-                                            {guide.role === 'lead-guide'
-                                                ? 'Lead Guide'
-                                                : 'Guide'}
-                                        </span>
-                                        <span className="overview-box__text">
-                                            {guide.name}
-                                        </span>
-                                    </div>
+                                        guide={guide}
+                                    />
                                 ))}
                         </div>
                     </div>
@@ -200,35 +184,7 @@ const TourDetails = () => {
                 <div className="reviews">
                     {tour.reviews &&
                         tour.reviews.map(review => (
-                            <div className="reviews__card" key={review.id}>
-                                <div className="reviews__avatar">
-                                    <img
-                                        src={`/img/users/${review.user.photo}`}
-                                        alt={`${review.user.name}`}
-                                        className="reviews__avatar-img"
-                                    />
-                                    <h6 className="reviews__user">
-                                        {review.user.name}
-                                    </h6>
-                                </div>
-                                <p className="reviews__text">{review.review}</p>
-                                <div className="reviews__rating">
-                                    {[1, 2, 3, 4, 5].map(star => (
-                                        <svg
-                                            key={`start-${star}`}
-                                            className={`reviews__star reviews__star--${
-                                                review.rating >= star
-                                                    ? 'active'
-                                                    : 'inactive'
-                                            }`}
-                                            dangerouslySetInnerHTML={{
-                                                __html:
-                                                    '<use xlink:href="/img/icons.svg#icon-star" />',
-                                            }}
-                                        />
-                                    ))}
-                                </div>
-                            </div>
+                            <ReviewCard key={review.id} review={review} />
                         ))}
                 </div>
             </section>
@@ -245,12 +201,12 @@ const TourDetails = () => {
                     </div>
                     <img
                         src={`/img/tours/${tour.images[1]}`}
-                        alt=""
+                        alt={`${tour.name} Picture`}
                         className="cta__img cta__img--1"
                     />
                     <img
                         src={`/img/tours/${tour.images[2]}`}
-                        alt=""
+                        alt={`${tour.name} Picture`}
                         className="cta__img cta__img--2"
                     />
                     <div className="cta__content">
