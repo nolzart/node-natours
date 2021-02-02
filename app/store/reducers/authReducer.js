@@ -6,7 +6,7 @@ import {
     REFRESH_TOKEN,
     UPDATE_USER_DATA,
     UPDATE_USER_PASSWORD,
-} from '../types/authTypes';
+} from '../types/authTypes'
 
 const initialState = {
     isAuthenticated: false,
@@ -14,7 +14,7 @@ const initialState = {
     token: '',
     loading: false,
     err: null,
-};
+}
 
 const authReducer = (state = initialState, action) => {
     switch (action.type) {
@@ -22,28 +22,28 @@ const authReducer = (state = initialState, action) => {
             return {
                 ...state,
                 loading: true,
-            };
+            }
         case SIGNUP_USER:
         case LOGIN_USER:
         case REFRESH_TOKEN:
         case UPDATE_USER_PASSWORD:
             return {
-                isAuthenticated: action.payload.token ? true : false,
+                isAuthenticated: !!action.payload.token,
                 user: action.payload.data.user,
                 token: action.payload.token,
                 loading: false,
                 err: null,
-            };
+            }
         case LOGOUT_USER:
-            return initialState;
+            return initialState
         case UPDATE_USER_DATA:
             return {
                 ...state,
                 user: action.payload.user,
-            };
+            }
         default:
-            return state;
+            return state
     }
-};
+}
 
-export default authReducer;
+export default authReducer

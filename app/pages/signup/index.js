@@ -1,113 +1,113 @@
-import { useRouter } from 'next/router';
-import { useDispatch, useSelector } from 'react-redux';
-import { useForm } from 'react-hook-form';
-import Head from 'next/head';
+import { useRouter } from 'next/router'
+import { useDispatch, useSelector } from 'react-redux'
+import { useForm } from 'react-hook-form'
+import Head from 'next/head'
 
-import Redirect from '@/components/elements/Redirect';
-import { signupUser } from '@/store/actions/authActions';
+import Redirect from '@/components/elements/Redirect'
+import { signupUser } from '@/store/actions/authActions'
 
 const Signup = () => {
-    const { register, handleSubmit, reset } = useForm();
-    const { isAuthenticated } = useSelector(state => state.auth);
-    const dispatch = useDispatch();
-    const router = useRouter();
+    const { register, handleSubmit, reset } = useForm()
+    const { isAuthenticated } = useSelector(state => state.auth)
+    const dispatch = useDispatch()
+    const router = useRouter()
 
     const onSubmit = data => {
-        dispatch(signupUser(data));
-        reset();
-        router.push('/');
-    };
+        dispatch(signupUser(data))
+        reset()
+        router.push('/')
+    }
 
     return (
-        <Redirect shouldRedirect={isAuthenticated === true} path='/'>
+        <Redirect shouldRedirect={isAuthenticated === true} path="/">
             <Head>
                 <title>{`Sign up into your account`}</title>
             </Head>
-            <main className='main'>
-                <div className='login-form'>
-                    <h2 className='heading-secondary ma-bt-lg'>
+            <main className="main">
+                <div className="login-form">
+                    <h2 className="heading-secondary ma-bt-lg">
                         Sign up into your account
                     </h2>
                     <form
-                        className='form form--login'
+                        className="form form--login"
                         onSubmit={handleSubmit(onSubmit)}
                     >
-                        <div className='form__group'>
-                            <label htmlFor='name' className='form__label'>
+                        <div className="form__group">
+                            <label htmlFor="name" className="form__label">
                                 Name
                             </label>
                             <input
-                                type='text'
-                                id='name'
-                                name='name'
-                                className='form__input'
+                                type="text"
+                                id="name"
+                                name="name"
+                                className="form__input"
                                 ref={register({
                                     required: true,
                                 })}
-                                placeholder='Laura'
+                                placeholder="Laura"
                                 required
                             />
                         </div>
-                        <div className='form__group'>
-                            <label htmlFor='email' className='form__label'>
+                        <div className="form__group">
+                            <label htmlFor="email" className="form__label">
                                 Email address
                             </label>
                             <input
-                                type='email'
-                                id='email'
-                                name='email'
-                                className='form__input'
+                                type="email"
+                                id="email"
+                                name="email"
+                                className="form__input"
                                 ref={register({
                                     required: true,
                                 })}
-                                placeholder='you@example.com'
+                                placeholder="you@example.com"
                                 required
                             />
                         </div>
-                        <div className='form__group ma-bt-md'>
-                            <label htmlFor='password' className='form__label'>
+                        <div className="form__group ma-bt-md">
+                            <label htmlFor="password" className="form__label">
                                 Password
                             </label>
                             <input
-                                type='password'
-                                id='password'
-                                name='password'
-                                className='form__input'
-                                placeholder='••••••••'
+                                type="password"
+                                id="password"
+                                name="password"
+                                className="form__input"
+                                placeholder="••••••••"
                                 ref={register({
                                     required: true,
                                     minLength: 8,
                                 })}
-                                minLength='8'
+                                minLength="8"
                                 required
                             />
                         </div>
-                        <div className='form__group'>
+                        <div className="form__group">
                             <label
-                                htmlFor='passwordConfirm'
-                                className='form__label'
+                                htmlFor="passwordConfirm"
+                                className="form__label"
                             >
                                 Password Confirm
                             </label>
                             <input
-                                type='password'
-                                id='passwordConfirm'
-                                name='passwordConfirm'
-                                className='form__input'
+                                type="password"
+                                id="passwordConfirm"
+                                name="passwordConfirm"
+                                className="form__input"
                                 ref={register({
                                     required: true,
                                 })}
-                                placeholder='••••••••'
+                                placeholder="••••••••"
                                 required
                             />
                         </div>
-                        <div className='form__group'></div>
-                        <button className='btn btn--green'>Signup</button>
+                        <div className="form__group"></div>
+                        <button className="btn btn--green">Signup</button>
                     </form>
                 </div>
             </main>
         </Redirect>
-    );
-};
+    )
+}
 
-export default Signup;
+export default Signup

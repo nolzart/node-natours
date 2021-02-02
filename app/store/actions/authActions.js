@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios from 'axios'
 
 import {
     SIGNUP_USER,
@@ -8,36 +8,36 @@ import {
     REFRESH_TOKEN,
     UPDATE_USER_DATA,
     UPDATE_USER_PASSWORD,
-} from '../types/authTypes';
+} from '../types/authTypes'
 
-import { UPDATE_ALERT } from '../types/alertTypes';
-import catchAsyncError from '@/utils/catchAsyncError';
+import { UPDATE_ALERT } from '../types/alertTypes'
+import catchAsyncError from '@/utils/catchAsyncError'
 
 export const updateUserData = data => async dispatch =>
     catchAsyncError(async () => {
-        const res = await axios.patch('/api/v1/users/updateMe', data);
-        dispatch({ type: UPDATE_USER_DATA, payload: res.data.data });
+        const res = await axios.patch('/api/v1/users/updateMe', data)
+        dispatch({ type: UPDATE_USER_DATA, payload: res.data.data })
         dispatch({
             type: UPDATE_ALERT,
             payload: {
                 status: 'success',
                 message: 'Data updated successfully!',
             },
-        });
-    }, dispatch);
+        })
+    }, dispatch)
 
 export const updateUserPassword = data => async dispatch =>
     catchAsyncError(async () => {
-        const res = await axios.patch('/api/v1/users/updateMyPassword', data);
-        dispatch({ type: UPDATE_USER_PASSWORD, payload: res.data });
+        const res = await axios.patch('/api/v1/users/updateMyPassword', data)
+        dispatch({ type: UPDATE_USER_PASSWORD, payload: res.data })
         dispatch({
             type: UPDATE_ALERT,
             payload: {
                 status: 'success',
                 message: 'Password updated successfully!',
             },
-        });
-    }, dispatch);
+        })
+    }, dispatch)
 
 export const signupUser = ({
     name,
@@ -51,25 +51,25 @@ export const signupUser = ({
             email,
             password,
             passwordConfirm,
-        });
+        })
         dispatch({
             type: UPDATE_ALERT,
             payload: { status: 'success', message: 'Successfully registered!' },
-        });
+        })
         dispatch({
             type: SIGNUP_USER,
             payload: res.data,
-        });
+        })
     } catch (err) {
         const message = err.response
             ? err.response.data.message
-            : 'Something went wrong!';
+            : 'Something went wrong!'
         dispatch({
             type: UPDATE_ALERT,
             payload: { status: 'error', message },
-        });
+        })
     }
-};
+}
 
 export const loginUser = ({ email, password }) => async dispatch =>
     catchAsyncError(async () => {
@@ -84,35 +84,35 @@ export const loginUser = ({ email, password }) => async dispatch =>
                     withCredentials: true,
                 },
             }
-        );
+        )
         dispatch({
             type: UPDATE_ALERT,
             payload: { status: 'success', message: 'Logged in successfully!' },
-        });
+        })
         dispatch({
             type: LOGIN_USER,
             payload: res.data,
-        });
-    }, dispatch);
+        })
+    }, dispatch)
 
 export const logoutUser = () => async dispatch =>
     catchAsyncError(async () => {
-        await axios.get('/api/v1/users/logout');
+        await axios.get('/api/v1/users/logout')
         dispatch({
             type: LOGOUT_USER,
-        });
-    }, dispatch);
+        })
+    }, dispatch)
 
 export const refreshToken = () => async dispatch => {
     try {
         dispatch({
             type: GET_REFRESH_TOKEN,
-        });
-        const res = await axios.get('/api/v1/users/refreshToken');
+        })
+        const res = await axios.get('/api/v1/users/refreshToken')
         dispatch({
             type: REFRESH_TOKEN,
             payload: res.data,
-        });
+        })
     } catch (err) {
         dispatch({
             type: REFRESH_TOKEN,
@@ -122,6 +122,6 @@ export const refreshToken = () => async dispatch => {
                     user: {},
                 },
             },
-        });
+        })
     }
-};
+}

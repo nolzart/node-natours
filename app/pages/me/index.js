@@ -1,15 +1,12 @@
-import { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { useForm } from 'react-hook-form';
-import Head from 'next/head';
+import { useState } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import { useForm } from 'react-hook-form'
+import Head from 'next/head'
 
-import ImageUpload from '@/components/elements/ImageUpload';
-import Redirect from '@/components/elements/Redirect';
+import ImageUpload from '@/components/elements/ImageUpload'
+import Redirect from '@/components/elements/Redirect'
 
-import {
-    updateUserData,
-    updateUserPassword,
-} from '@/store/actions/authActions';
+import { updateUserData, updateUserPassword } from '@/store/actions/authActions'
 
 const navItem = (link, text, icon, active) => (
     <li className={`${active ? 'side__nav--active' : ''}`}>
@@ -22,60 +19,60 @@ const navItem = (link, text, icon, active) => (
             {text}
         </a>
     </li>
-);
+)
 
 const Account = () => {
-    const { register, handleSubmit } = useForm();
+    const { register, handleSubmit } = useForm()
     const {
         register: registerPassword,
         handleSubmit: handleSubmitPassword,
         reset,
-    } = useForm();
+    } = useForm()
 
-    const { user, isAuthenticated } = useSelector(state => state.auth);
-    const dispatch = useDispatch();
-    const [photo, setPhoto] = useState('');
+    const { user, isAuthenticated } = useSelector(state => state.auth)
+    const dispatch = useDispatch()
+    const [photo, setPhoto] = useState('')
 
     const submitData = data => {
-        if (photo) data.photo = photo;
-        const form = new FormData();
-        form.append('name', data.name);
-        form.append('email', data.email);
-        form.append('photo', data.photo);
-        dispatch(updateUserData(form));
-    };
+        if (photo) data.photo = photo
+        const form = new FormData()
+        form.append('name', data.name)
+        form.append('email', data.email)
+        form.append('photo', data.photo)
+        dispatch(updateUserData(form))
+    }
     const submitPassword = data => {
-        dispatch(updateUserPassword(data));
-        reset();
-    };
+        dispatch(updateUserPassword(data))
+        reset()
+    }
     return (
-        <Redirect shouldRedirect={isAuthenticated !== true} path='/login'>
+        <Redirect shouldRedirect={isAuthenticated !== true} path="/login">
             <Head>
                 <title>{`Natours | Your account`}</title>
             </Head>
-            <main className='main'>
-                <div className='user-view'>
+            <main className="main">
+                <div className="user-view">
                     <input
-                        type='checkbox'
-                        name='navi-toggle'
-                        id='navi-toggle'
-                        className='nav__checkbox'
+                        type="checkbox"
+                        name="navi-toggle"
+                        id="navi-toggle"
+                        className="nav__checkbox"
                     />
-                    <label htmlFor='navi-toggle' className='nav__button'>
-                        <span className='nav__icon'></span>
+                    <label htmlFor="navi-toggle" className="nav__button">
+                        <span className="nav__icon"></span>
                     </label>
-                    <nav className='user-view__menu'>
-                        <ul className='side-nav'>
+                    <nav className="user-view__menu">
+                        <ul className="side-nav">
                             {navItem('#', 'Settings', 'settings', true)}
                             {navItem('/my-tours', 'My bookings', 'briefcase')}
                             {navItem('#', 'My reviews', 'star')}
                             {navItem('#', 'Billing', 'credit-card')}
                             {isAuthenticated && user.role === 'admin' && (
-                                <div className='admin-nav'>
-                                    <h5 className='admin-nav__heading'>
+                                <div className="admin-nav">
+                                    <h5 className="admin-nav__heading">
                                         Admin
                                     </h5>
-                                    <ul className='side-nav'>
+                                    <ul className="side-nav">
                                         {navItem('#', 'Manage users', 'users')}
                                         {navItem('#', 'Manage reviews', 'star')}
                                         {navItem(
@@ -88,44 +85,44 @@ const Account = () => {
                             )}
                         </ul>
                     </nav>
-                    <div className='user-view__content'>
-                        <div className='user-view__form-container'>
-                            <h2 className='heading-secondary ma-bt-md'>
+                    <div className="user-view__content">
+                        <div className="user-view__form-container">
+                            <h2 className="heading-secondary ma-bt-md">
                                 Tour account settings
                             </h2>
                             <form
-                                className='form form-user-data'
+                                className="form form-user-data"
                                 onSubmit={handleSubmit(submitData)}
                             >
-                                <div className='form__group'>
+                                <div className="form__group">
                                     <label
-                                        htmlFor='name'
-                                        className='form__label'
+                                        htmlFor="name"
+                                        className="form__label"
                                     >
                                         Name
                                     </label>
                                     <input
-                                        type='text'
-                                        id='name'
-                                        name='name'
-                                        className='form__input'
+                                        type="text"
+                                        id="name"
+                                        name="name"
+                                        className="form__input"
                                         defaultValue={user.name}
                                         ref={register({ required: true })}
                                         required
                                     />
                                 </div>
-                                <div className='form__group ma-bt-md'>
+                                <div className="form__group ma-bt-md">
                                     <label
-                                        htmlFor='email'
-                                        className='form__label'
+                                        htmlFor="email"
+                                        className="form__label"
                                     >
                                         Email
                                     </label>
                                     <input
-                                        type='email'
-                                        id='email'
-                                        name='email'
-                                        className='form__input'
+                                        type="email"
+                                        id="email"
+                                        name="email"
+                                        className="form__input"
                                         defaultValue={user.email}
                                         ref={register({ required: true })}
                                         required
@@ -136,92 +133,92 @@ const Account = () => {
                                     userPhoto={user.photo}
                                     setPhoto={setPhoto}
                                 />
-                                <div className='form__group right'>
-                                    <button className='btn btn--small btn--green'>
+                                <div className="form__group right">
+                                    <button className="btn btn--small btn--green">
                                         Save settings
                                     </button>
                                 </div>
                             </form>
                         </div>
 
-                        <div className='line'>&nbsp;</div>
+                        <div className="line">&nbsp;</div>
 
-                        <div className='user-view__form-container'>
-                            <h2 className='heading-secondary ma-bt-md'>
+                        <div className="user-view__form-container">
+                            <h2 className="heading-secondary ma-bt-md">
                                 Password change
                             </h2>
                             <form
-                                className='form form-user-password'
+                                className="form form-user-password"
                                 onSubmit={handleSubmitPassword(submitPassword)}
                             >
-                                <div className='form__group'>
+                                <div className="form__group">
                                     <label
-                                        htmlFor='currentPassword'
-                                        className='form__label'
+                                        htmlFor="currentPassword"
+                                        className="form__label"
                                     >
                                         Current password
                                     </label>
                                     <input
-                                        type='password'
-                                        id='currentPassword'
-                                        name='currentPassword'
-                                        placeholder='••••••••'
-                                        defaultValue=''
-                                        className='form__input'
+                                        type="password"
+                                        id="currentPassword"
+                                        name="currentPassword"
+                                        placeholder="••••••••"
+                                        defaultValue=""
+                                        className="form__input"
                                         ref={registerPassword({
                                             required: true,
                                             minLength: 8,
                                         })}
                                         required
-                                        minLength='8'
+                                        minLength="8"
                                     />
                                 </div>
-                                <div className='form__group'>
+                                <div className="form__group">
                                     <label
-                                        htmlFor='password'
-                                        className='form__label'
+                                        htmlFor="password"
+                                        className="form__label"
                                     >
                                         New password
                                     </label>
                                     <input
-                                        type='password'
-                                        id='password'
-                                        name='password'
-                                        placeholder='••••••••'
-                                        className='form__input'
-                                        defaultValue=''
+                                        type="password"
+                                        id="password"
+                                        name="password"
+                                        placeholder="••••••••"
+                                        className="form__input"
+                                        defaultValue=""
                                         ref={registerPassword({
                                             required: true,
                                             minLength: 8,
                                         })}
                                         required
-                                        minLength='8'
+                                        minLength="8"
                                     />
                                 </div>
-                                <div className='form__group'>
+                                <div className="form__group">
                                     <label
-                                        htmlFor='passwordConfirm'
-                                        className='form__label'
+                                        htmlFor="passwordConfirm"
+                                        className="form__label"
                                     >
                                         Confirm password
                                     </label>
                                     <input
-                                        type='password'
-                                        id='passwordConfirm'
-                                        name='passwordConfirm'
-                                        defaultValue=''
-                                        placeholder='••••••••'
-                                        className='form__input'
+                                        type="password"
+                                        id="passwordConfirm"
+                                        name="passwordConfirm"
+                                        defaultValue=""
+                                        placeholder="••••••••"
+                                        className="form__input"
                                         ref={registerPassword({
                                             required: true,
                                             minLength: 8,
                                         })}
                                         required
-                                        minLength='8'
+                                        minLength="8"
                                     />
                                 </div>
-                                <div className='form__group'>
-                                    <button className='btn btn--small btn--green btn--password'>
+                                <div className="form__group">
+                                    <button className="btn btn--small btn--green btn--password">
                                         Save password
                                     </button>
                                 </div>
@@ -231,7 +228,7 @@ const Account = () => {
                 </div>
             </main>
         </Redirect>
-    );
-};
+    )
+}
 
-export default Account;
+export default Account

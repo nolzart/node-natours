@@ -1,9 +1,9 @@
-import Document, { Html, Head, Main, NextScript } from 'next/document';
+import Document, { Html, Head, Main, NextScript } from 'next/document'
 
 class MyDocument extends Document {
     static async getInitialProps(ctx) {
-        const initialProps = await Document.getInitialProps(ctx);
-        return { ...initialProps };
+        const initialProps = await Document.getInitialProps(ctx)
+        return { ...initialProps }
     }
 
     render() {
@@ -11,20 +11,20 @@ class MyDocument extends Document {
             <Html>
                 <Head>
                     <link
-                        rel='shortcut icon'
-                        type='image/png'
-                        href='/img/favicon.png'
+                        rel="shortcut icon"
+                        type="image/png"
+                        href="/img/favicon.png"
                     />
                     <link
-                        href='https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.css'
-                        rel='stylesheet'
+                        href="https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.css"
+                        rel="stylesheet"
                     />
                     <link
-                        href='https://fonts.googleapis.com/css?family=Lato:300,300i,700'
-                        rel='stylesheet'
+                        href="https://fonts.googleapis.com/css?family=Lato:300,300i,700"
+                        rel="stylesheet"
                     />
-                    <script src='https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.js' />
-                    <script src='https://js.stripe.com/v3/' />
+                    <script src="https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.js" />
+                    <script src="https://js.stripe.com/v3/" />
                     {/* <link href='styles.css' rel='stylesheet' /> */}
                 </Head>
                 <body>
@@ -32,8 +32,8 @@ class MyDocument extends Document {
                     <NextScript />
                 </body>
             </Html>
-        );
+        )
     }
 }
 
-export default MyDocument;
+export default MyDocument

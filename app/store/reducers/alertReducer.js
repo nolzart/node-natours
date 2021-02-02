@@ -1,23 +1,22 @@
 const initialState = {
     status: '',
     message: '',
-};
+}
 
 const alertReducer = (state = initialState, action) => {
     switch (action.type) {
         case 'UPDATE_ALERT':
-            const { status, message } = action.payload;
             return {
-                status,
-                message,
-            };
+                status: action.payload.status,
+                message: action.payload.message,
+            }
         case 'RESET_ALERT':
             return {
                 ...initialState,
-            };
+            }
         default:
-            return state;
+            return state
     }
-};
+}
 
-export default alertReducer;
+export default alertReducer
