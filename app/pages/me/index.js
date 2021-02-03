@@ -3,8 +3,11 @@ import { useSelector, useDispatch } from 'react-redux'
 import { useForm } from 'react-hook-form'
 import Head from 'next/head'
 
-import ImageUpload from '@/components/elements/ImageUpload'
-import Redirect from '@/components/elements/Redirect'
+import ImageUpload from '@/components/modules/ImageUpload'
+import Redirect from '@/components/modules/Redirect'
+import InputEmail from '@/components/elements/InputEmail'
+import InputText from '@/components/elements/InputText'
+import InputPassword from '@/components/elements/InputPassword'
 
 import { updateUserData, updateUserPassword } from '@/store/actions/authActions'
 
@@ -94,40 +97,18 @@ const Account = () => {
                                 className="form form-user-data"
                                 onSubmit={handleSubmit(submitData)}
                             >
-                                <div className="form__group">
-                                    <label
-                                        htmlFor="name"
-                                        className="form__label"
-                                    >
-                                        Name
-                                    </label>
-                                    <input
-                                        type="text"
-                                        id="name"
-                                        name="name"
-                                        className="form__input"
-                                        defaultValue={user.name}
-                                        ref={register({ required: true })}
-                                        required
-                                    />
-                                </div>
-                                <div className="form__group ma-bt-md">
-                                    <label
-                                        htmlFor="email"
-                                        className="form__label"
-                                    >
-                                        Email
-                                    </label>
-                                    <input
-                                        type="email"
-                                        id="email"
-                                        name="email"
-                                        className="form__input"
-                                        defaultValue={user.email}
-                                        ref={register({ required: true })}
-                                        required
-                                    />
-                                </div>
+                                <InputText
+                                    labelContent="Name"
+                                    inputId="name"
+                                    refAttribute={register({ required: true })}
+                                    defaultValue={user.name}
+                                />
+                                <InputEmail
+                                    refAttribute={register({ required: true })}
+                                    labelContent="Email"
+                                    inputId="email"
+                                    defaultValue={user.email}
+                                />
                                 <ImageUpload
                                     name={user.name}
                                     userPhoto={user.photo}
@@ -151,72 +132,30 @@ const Account = () => {
                                 className="form form-user-password"
                                 onSubmit={handleSubmitPassword(submitPassword)}
                             >
-                                <div className="form__group">
-                                    <label
-                                        htmlFor="currentPassword"
-                                        className="form__label"
-                                    >
-                                        Current password
-                                    </label>
-                                    <input
-                                        type="password"
-                                        id="currentPassword"
-                                        name="currentPassword"
-                                        placeholder="••••••••"
-                                        defaultValue=""
-                                        className="form__input"
-                                        ref={registerPassword({
-                                            required: true,
-                                            minLength: 8,
-                                        })}
-                                        required
-                                        minLength="8"
-                                    />
-                                </div>
-                                <div className="form__group">
-                                    <label
-                                        htmlFor="password"
-                                        className="form__label"
-                                    >
-                                        New password
-                                    </label>
-                                    <input
-                                        type="password"
-                                        id="password"
-                                        name="password"
-                                        placeholder="••••••••"
-                                        className="form__input"
-                                        defaultValue=""
-                                        ref={registerPassword({
-                                            required: true,
-                                            minLength: 8,
-                                        })}
-                                        required
-                                        minLength="8"
-                                    />
-                                </div>
-                                <div className="form__group">
-                                    <label
-                                        htmlFor="passwordConfirm"
-                                        className="form__label"
-                                    >
-                                        Confirm password
-                                    </label>
-                                    <input
-                                        type="password"
-                                        id="passwordConfirm"
-                                        name="passwordConfirm"
-                                        defaultValue=""
-                                        placeholder="••••••••"
-                                        className="form__input"
-                                        ref={registerPassword({
-                                            required: true,
-                                            minLength: 8,
-                                        })}
-                                        required
-                                        minLength="8"
-                                    />
-                                </div>
+                                <InputPassword
+                                    labelContent="Current Password"
+                                    inputId="currentPassword"
+                                    refAttribute={registerPassword({
+                                        required: true,
+                                        minLength: 8,
+                                    })}
+                                />
+                                <InputPassword
+                                    labelContent="New Password"
+                                    inputId="password"
+                                    refAttribute={registerPassword({
+                                        required: true,
+                                        minLength: 8,
+                                    })}
+                                />
+                                <InputPassword
+                                    labelContent="Confirm Password"
+                                    inputId="passwordConfirm"
+                                    refAttribute={registerPassword({
+                                        required: true,
+                                        minLength: 8,
+                                    })}
+                                />
                                 <div className="form__group">
                                     <button className="btn btn--small btn--green btn--password">
                                         Save password

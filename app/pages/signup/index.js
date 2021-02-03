@@ -3,8 +3,11 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useForm } from 'react-hook-form'
 import Head from 'next/head'
 
-import Redirect from '@/components/elements/Redirect'
 import { signupUser } from '@/store/actions/authActions'
+import Redirect from '@/components/modules/Redirect'
+import InputEmail from '@/components/elements/InputEmail'
+import InputText from '@/components/elements/InputText'
+import InputPassword from '@/components/elements/InputPassword'
 
 const Signup = () => {
     const { register, handleSubmit, reset } = useForm()
@@ -32,75 +35,38 @@ const Signup = () => {
                         className="form form--login"
                         onSubmit={handleSubmit(onSubmit)}
                     >
-                        <div className="form__group">
-                            <label htmlFor="name" className="form__label">
-                                Name
-                            </label>
-                            <input
-                                type="text"
-                                id="name"
-                                name="name"
-                                className="form__input"
-                                ref={register({
-                                    required: true,
-                                })}
-                                placeholder="Laura"
-                                required
-                            />
-                        </div>
-                        <div className="form__group">
-                            <label htmlFor="email" className="form__label">
-                                Email address
-                            </label>
-                            <input
-                                type="email"
-                                id="email"
-                                name="email"
-                                className="form__input"
-                                ref={register({
-                                    required: true,
-                                })}
-                                placeholder="you@example.com"
-                                required
-                            />
-                        </div>
-                        <div className="form__group ma-bt-md">
-                            <label htmlFor="password" className="form__label">
-                                Password
-                            </label>
-                            <input
-                                type="password"
-                                id="password"
-                                name="password"
-                                className="form__input"
-                                placeholder="••••••••"
-                                ref={register({
-                                    required: true,
-                                    minLength: 8,
-                                })}
-                                minLength="8"
-                                required
-                            />
-                        </div>
-                        <div className="form__group">
-                            <label
-                                htmlFor="passwordConfirm"
-                                className="form__label"
-                            >
-                                Password Confirm
-                            </label>
-                            <input
-                                type="password"
-                                id="passwordConfirm"
-                                name="passwordConfirm"
-                                className="form__input"
-                                ref={register({
-                                    required: true,
-                                })}
-                                placeholder="••••••••"
-                                required
-                            />
-                        </div>
+                        <InputText
+                            labelContent="Name"
+                            inputId="name"
+                            refAttribute={register({
+                                required: true,
+                            })}
+                            defaultValue=""
+                        />
+                        <InputEmail
+                            labelConten="Email"
+                            inputId="email"
+                            refAttribute={register({
+                                required: true,
+                            })}
+                            defaultValue=""
+                        />
+                        <InputPassword
+                            labelContent="Password"
+                            inputId="password"
+                            refAttribute={register({
+                                required: true,
+                                minLength: 8,
+                            })}
+                        />
+                        <InputPassword
+                            labelContent="Password Confirm"
+                            inputId="passwordConfirm"
+                            refAttribute={register({
+                                required: true,
+                                minLength: 8,
+                            })}
+                        />
                         <div className="form__group">
                             <button className="btn btn--green">Signup</button>
                         </div>
