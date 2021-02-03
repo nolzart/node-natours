@@ -101,8 +101,9 @@ const Signup = () => {
                                 required
                             />
                         </div>
-                        <div className="form__group"></div>
-                        <button className="btn btn--green">Signup</button>
+                        <div className="form__group">
+                            <button className="btn btn--green">Signup</button>
+                        </div>
                     </form>
                 </div>
             </main>

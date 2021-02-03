@@ -1,4 +1,4 @@
-const ReviewCard = review => {
+const ReviewCard = ({ review }) => {
     return (
         <div className="reviews__card">
             <div className="reviews__avatar">

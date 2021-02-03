@@ -11,12 +11,12 @@ const tourReducer = (state = initialState, action) => {
         case GET_ALL_TOURS:
             return {
                 ...state,
-                tours: action.payload.tours,
+                tours: action.payload,
             }
         case GET_TOUR:
             return {
                 ...state,
-                tour: action.payload.data.tour,
+                tour: action.payload,
             }
         case GET_MY_TOURS:
             return {

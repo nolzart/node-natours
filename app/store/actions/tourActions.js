@@ -6,10 +6,9 @@ import catchAsyncError from '@/utils/catchAsyncError'
 export const getTours = () => async dispatch =>
     catchAsyncError(async () => {
         const res = await axios.get('/api/v1/tours')
-
         dispatch({
             type: GET_ALL_TOURS,
-            payload: res.data.data,
+            payload: res.data.data.data,
         })
     }, dispatch)
 
@@ -19,10 +18,9 @@ export const getTour = slug => async dispatch =>
         const resTour = await axios.get(
             `/api/v1/tours/${resId.data.data.data[0].id}`
         )
-
         dispatch({
             type: GET_TOUR,
-            payload: resTour.data.data,
+            payload: resTour.data.data.data,
         })
     }, dispatch)
 

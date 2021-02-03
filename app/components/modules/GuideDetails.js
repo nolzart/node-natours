@@ -1,4 +1,4 @@
-const GuideDetails = guide => {
+const GuideDetails = ({ guide }) => {
     return (
         <div className="overview-box__detail">
             <img

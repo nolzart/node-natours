@@ -18,7 +18,7 @@ const DetailItem = ({ icon, classContainer, classSvg, children }) => (
     <div className={classContainer}>
         <svg
             dangerouslySetInnerHTML={{
-                __html: `<use xlink:href="/img/icons.svg#icon-map-${icon}" />`,
+                __html: `<use xlink:href="/img/icons.svg#icon-${icon}" />`,
             }}
             className={classSvg}
         />
