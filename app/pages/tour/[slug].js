@@ -1,5 +1,4 @@
 import Link from 'next/link'
-import Image from 'next/image'
 import Head from 'next/head'
 import { useEffect, useCallback } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
@@ -9,7 +8,6 @@ import MapboxGl from '@/components/modules/mapboxgl'
 import Loader from '@/components/elements/Loader'
 import { getStripe, getCheckoutSession } from '@/utils/stripe'
 import * as tourActions from '@/store/actions/tourActions'
-import { wrapper } from '@/store/store'
 import ReviewCard from '@/components/modules/ReviewCard'
 import Hero from '@/components/modules/Hero'
 import GuideDetails from '@/components/modules/GuideDetails'
@@ -26,10 +24,9 @@ const DetailItem = ({ icon, classContainer, classSvg, children }) => (
     </div>
 )
 
-export const getServerSideProps = wrapper.getServerSideProps(
-    async ({ store, params }) =>
-        await store.dispatch(tourActions.getTour(params.slug))
-)
+// export const getServerSideProps = wrapper.getServerSideProps(async ({ store, params }) => {
+//     return await store.dispatch(tourActions.getTour(params.slug))
+// })
 
 const TourDetails = () => {
     const { tour } = useSelector(state => state.tour)
@@ -191,14 +188,7 @@ const TourDetails = () => {
             <section className="section-cta">
                 <div className="cta">
                     <div className="cta__img cta__img--logo">
-                        <Image
-                            src="/img/logo-white.png"
-                            alt="Natours logo"
-                            height={100}
-                            width={195}
-                            // unoptimized={true}
-                            priority
-                        />
+                        <img src="/img/logo-white.png" alt="Natours logo" />
                     </div>
                     <img
                         src={`/img/tours/${tour.images[1]}`}
@@ -238,6 +228,10 @@ const TourDetails = () => {
             </section>
         </>
     )
+}
+
+TourDetails.getInitialProps = async ({ store, req, query }) => {
+    return await store.dispatch(tourActions.getTour(query.slug))
 }
 
 export default TourDetails

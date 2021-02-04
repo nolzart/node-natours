@@ -6,7 +6,7 @@ import { wrapper } from '@/store/store'
 import Tour from '@/components/templates/TourCard'
 import { getTours } from '@/store/actions/tourActions'
 
-export const getServerSideProps = wrapper.getServerSideProps(
+export const getStaticProps = wrapper.getServerSideProps(
     async ({ store }) => await store.dispatch(getTours())
 )
 

@@ -1,5 +1,4 @@
 import Link from 'next/link'
-import Image from 'next/image'
 import { useSelector, useDispatch } from 'react-redux'
 // Actions
 import { logoutUser } from '../../store/actions/authActions'
@@ -22,14 +21,7 @@ const Header = () => {
             </nav>
             <label htmlFor="nav__checkbox">
                 <div className="header__logo">
-                    <Image
-                        src="/img/logo-white.png"
-                        alt="Natours logo"
-                        height={100}
-                        width={195}
-                        priority
-                        // unoptimized={true}
-                    />
+                    <img src="/img/logo-white.png" alt="Natours logo" />
                 </div>
             </label>
             <nav className="nav nav--user">

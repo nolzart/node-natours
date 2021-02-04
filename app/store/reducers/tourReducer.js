@@ -1,3 +1,4 @@
+// import { HYDRATE } from 'next-redux-wrapper'
 import { GET_ALL_TOURS, GET_TOUR, GET_MY_TOURS } from '../types/tourTypes'
 
 const initialState = {

@@ -1,16 +1,7 @@
-import Image from 'next/image'
-
 const Footer = () => (
     <footer className="footer">
         <div className="footer__logo">
-            <Image
-                src="/img/logo-green.png"
-                alt="Natours logo"
-                height={60}
-                width={300}
-                // unoptimized={true}
-                priority
-            />
+            <img src="/img/logo-green.png" alt="Natours logo" />
         </div>
         <ul className="footer__nav">
             <li>
