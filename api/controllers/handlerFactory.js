@@ -26,7 +26,7 @@ exports.updateOne = Model =>
             return next(new AppError('No document found with that ID', 404));
 
         res.status(200).json({
-            status: 'sucess',
+            status: 'success',
             data: {
                 data: doc,
             },
@@ -37,7 +37,7 @@ exports.createOne = Model =>
     catchAsync(async (req, res, next) => {
         const newDoc = await Model.create(req.body);
         res.status(201).json({
-            status: 'sucess',
+            status: 'success',
             data: {
                 data: newDoc,
             },
@@ -54,7 +54,7 @@ exports.getOne = (Model, popOptions) =>
             return next(new AppError('No document found with that ID', 404));
 
         res.status(200).json({
-            status: 'sucess',
+            status: 'success',
             data: {
                 data: doc,
             },
@@ -77,7 +77,7 @@ exports.getAll = Model =>
 
         // Send Response
         res.status(200).send({
-            status: 'sucess',
+            status: 'success',
             results: docs.length,
             data: {
                 data: docs,

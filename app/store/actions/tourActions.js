@@ -14,13 +14,11 @@ export const getTours = () => async dispatch =>
 
 export const getTour = slug => async dispatch =>
     catchAsyncError(async () => {
-        const resId = await axios.get(`/api/v1/tours?slug=${slug}&fields=id`)
-        const resTour = await axios.get(
-            `/api/v1/tours/${resId.data.data.data[0].id}`
-        )
+        const res = await axios.get(`/api/v1/tours/${slug}`)
+
         dispatch({
             type: GET_TOUR,
-            payload: resTour.data.data.data,
+            payload: res.data.data.data,
         })
     }, dispatch)
 

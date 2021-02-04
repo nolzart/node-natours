@@ -61,9 +61,23 @@ exports.aliasTopTours = (req, res, next) => {
     next();
 };
 
+exports.getTour = catchAsync(async (req, res, next) => {
+    const tour = await Tour.findOne({ slug: req.params.id }).populate({
+        path: 'reviews',
+        fields: 'review rating user',
+    });
+    if (!tour) return next(new AppError('Error', 404));
+    res.status(200).json({
+        status: 'success',
+        data: {
+            data: tour,
+        },
+    });
+});
+
 exports.createTour = factory.createOne(Tour);
 exports.getAllTours = factory.getAll(Tour);
-exports.getTour = factory.getOne(Tour, { path: 'reviews' });
+// exports.getTour = factory.getOne(Tour, { path: 'reviews' });
 exports.updateTour = factory.updateOne(Tour);
 exports.deleteTour = factory.deleteOne(Tour);
 
