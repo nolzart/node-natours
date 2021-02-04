@@ -28,6 +28,7 @@ const Header = () => {
                         height={100}
                         width={195}
                         priority
+                        // unoptimized={true}
                     />
                 </div>
             </label>

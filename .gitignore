@@ -1,6 +1,8 @@
 *.env
 *.next
+*out
 .cache
+
 
 public/js/bundle.js.map
 node_modules

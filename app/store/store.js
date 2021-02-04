@@ -13,8 +13,11 @@ const bindMiddleware = middleware => {
     return applyMiddleware(...middleware)
 }
 
-const makeConfiguredStore = reducer =>
-    createStore(reducer, bindMiddleware([thunkMiddleware, logger]))
+const makeConfiguredStore = reducer => {
+    if (process.env.NODE_ENV !== 'production')
+        return createStore(reducer, bindMiddleware([thunkMiddleware, logger]))
+    else return createStore(reducer, bindMiddleware([thunkMiddleware]))
+}
 
 const makeStore = () => {
     const isServer = typeof window === 'undefined'

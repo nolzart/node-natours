@@ -25,7 +25,7 @@
     },
     "scripts": {
         "dev": "next",
-        "build": "next build",
+        "build": "next build && next export",
         "start": "next start",
         "start:dev": "SET NODE_ENV=development && node server.js",
         "compile:sass": "node-sass src/styles/main.scss public/styles.css -w"

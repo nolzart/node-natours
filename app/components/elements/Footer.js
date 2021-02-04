@@ -8,6 +8,7 @@ const Footer = () => (
                 alt="Natours logo"
                 height={60}
                 width={300}
+                // unoptimized={true}
                 priority
             />
         </div>

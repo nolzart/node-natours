@@ -196,6 +196,7 @@ const TourDetails = () => {
                             alt="Natours logo"
                             height={100}
                             width={195}
+                            // unoptimized={true}
                             priority
                         />
                     </div>
