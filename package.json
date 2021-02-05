@@ -1,0 +1,24 @@
+{
+    "name": "node-natours",
+    "version": "1.0.0",
+    "description": "",
+    "main": "app.js",
+    "scripts": {
+        "heroku-prebuild": "cd api && npm i && npm run build",
+        "start": "cd api && npm start",
+        "dev": "nodemon server.js",
+        "start:prod": "NODE_ENV=production nodemon server.js",
+        "debug": "ndb ./api/server.js",
+        "watch:js": "parcel watch public/js/index.js --out-dir public/js --out-file bundle.js",
+        "build:js": "parcel build public/js/index.js --out-dir public/js --out-file bundle.js"
+    },
+    "author": "Omar Colmenares",
+    "license": "MIT",
+    "engines": {
+        "node": "12.x"
+    },
+    "dependencies": {
+    },
+    "devDependencies": {
+    }
+}
