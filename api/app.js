@@ -23,8 +23,11 @@ const app = express();
 
 app.enable('trust proxy');
 
-app.set('view engine', 'pug');
-app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'html');
+
+app.engine('html', require('ejs').renderFile);
+
+app.set('views', path.join(__dirname, 'public'));
 
 // Implement cors
 app.use(cors());
@@ -89,6 +92,11 @@ app.use('/api/v1/tours', tourRouter);
 app.use('/api/v1/users', userRouter);
 app.use('/api/v1/reviews', reviewRouter);
 app.use('/api/v1/bookings', bookingRouter);
+
+app.get('/', (req, res) => {
+    // res.sendFile(path.join(__dirname, './views/index.html'));
+    res.render('index');
+});
 
 app.all('*', (req, res, next) => {
     next(new AppError(`Can't find ${req.originalUrl} on this server`, 404));
