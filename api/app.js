@@ -93,10 +93,7 @@ app.use('/api/v1/users', userRouter);
 app.use('/api/v1/reviews', reviewRouter);
 app.use('/api/v1/bookings', bookingRouter);
 
-app.get('/', (req, res) => {
-    // res.sendFile(path.join(__dirname, './views/index.html'));
-    res.render('index');
-});
+app.get('/', (req, res) => res.render('index'));
 
 app.all('*', (req, res, next) => {
     next(new AppError(`Can't find ${req.originalUrl} on this server`, 404));

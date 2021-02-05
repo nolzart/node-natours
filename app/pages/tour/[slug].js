@@ -217,7 +217,7 @@ const TourDetails = () => {
                                 Book tour now!
                             </button>
                         ) : (
-                            <Link href="Login">
+                            <Link href="/login">
                                 <a className="btn btn--green span-all-rows">
                                     Log in to book a tour!
                                 </a>
