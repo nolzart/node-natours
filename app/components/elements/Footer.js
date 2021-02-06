@@ -21,8 +21,16 @@ const Footer = () => (
             </li>
         </ul>
         <p className="footer__copyright">
-            &copy; by Jonas Schmedtmann. Fell free to use this Project for your
-            own purposes, EXCEPT producing your own course or tutorial.
+            &copy; by{' '}
+            <a
+                style={{ color: '#777' }}
+                href="https://github.com/nolzart/"
+                target="_blank"
+                rel="noreferrer"
+            >
+                {' '}
+                nolzart
+            </a>
         </p>
     </footer>
 )
