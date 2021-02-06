@@ -1,12 +1,12 @@
-<img src='api/public/img/logo-green-round.png' style=" display: block; margin: 0 auto;" height="160px"/>
+<p align="center"><img src='api/public/img/logo-green-round.png' align="center" height="160px"/></p>
 
 <h1 align="center"> 
     Natours
 </h1>
 
-<p style="text-align: justify;">A page for a travel agency startup built on top of NodeJS and NextJS, here is the <a href="https://mern-natours.herokuapp.com/">live version</a></p>
+<p align="justify">A page for a travel agency startup built on top of NodeJS and NextJS, here is the <a href="https://mern-natours.herokuapp.com/">live version</a></p>
 
-<ul style="list-style: none;">
+<ul>
     <li>
         <a href="#description">Description</a>
     </li>
@@ -35,7 +35,7 @@
 
 <h1 id="description">Description</h1>
 
-<p style="text-align: justify;">
+<p align="justify">
 Natours is an application where the API is built with <a href="https://nodejs.org/en/docs/">NodeJS</a> and <a href="https://expressjs.com/">express</a>. the frontend created in <a href="https://nextjs.org/docs/getting-started">Nextjs</a> is served by node. Once you enter the main page, all the tours available in the application will be displayed, each tour has a button that guides you to the details section, in this you can see all the information related to the tour, such as the routes to follow with <a href="https://docs.mapbox.com/mapbox-gl-js/api/">mapboxgl</a> and user reviews, at the end you will find a section to buy the tour with your credit card using <a href="https://stripe.com/docs/payments/checkout">stripejs checkout</a>, to access the application you can use the route <b>/login</b> or <b>/signup</b>. All authentication and authorization is handled with <a href="https://jwt.io/">JWT</a> and cookies.
 </p>
 
@@ -86,7 +86,7 @@ Natours is an application where the API is built with <a href="https://nodejs.or
 
 <h1 id="api-usage">API usage</h1>
 
-<p style="text-align: justify">
+<p align="justify">
     Before using the API, you need to set the variables in your API testing (like Postman or Insomnia) depending on your enviroment.
     <pre>
 - {{URL}} with your hostname as value (Eg. http://127.0.0.1:3000 or https://www.production.com)
@@ -95,25 +95,25 @@ Natours is an application where the API is built with <a href="https://nodejs.or
 </p>
 
 <h2 id="api-features">API Features</h2>
-<p style="text-align: justify;">
+<p align="justify">
     <b>Filtering</b> 👉 You can include filters in the URL by including additional query parameters. To start filtering add a <code>?</code> followed by the query <code>[query]=[value]</code>. If you want to chain several queries in the same call, use & followed by the query.
 </p>
 
 <p>For example<code>/api/v1/tours?duration=7&maxGroupSize=15</code></p>
 
-<p style="text-align: justify">
+<p align="justify">
     You can use mongoose operators, specifying the operator you want to use encapsulation in brackets in front of the property
 </p>
 <p>For Example: <code>api/v1/tours?duration[gte]=5&price[lte]=2000</code></p>
 
-<p style="text-align: justify;">
+<p align="justify">
   <b>Sorting</b> 👉 You can sort results based on a certain field using <code>sort</code>parameter.
 </p>
 
 <p>For Example: <code>api/v1/tours?sort=price</code> upward</p>
 <p><code>api/v1/tours?sort=-price</code> falling</p>
 
-<p style="text-align: justify;">
+<p align="justify">
   <b>Limit Fields</b> 👉 You can specify which fields you want to get back in the response using the <code>fields</code> parameter.
 </p>
 <p>
@@ -122,7 +122,7 @@ Natours is an application where the API is built with <a href="https://nodejs.or
 <p>
   <code>api/v1/tours?fields=-guides</code> the response will not return the guides field.
 </p>
-<p style="text-align: justify;">
+<p align="justify">
   <b>Pagination</b> 👉 You can select a certain page of the results using the <code>limit</code> parameter to indicate how many results you want per page and the <code>page</code> parameter to indicate the page.
 </p>
 
